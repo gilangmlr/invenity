@@ -60,7 +60,7 @@ class DeviceClass
 			}
 			if ($type_code!="") {
 				$type_code = strtoupper(trim($type_code));
-				$query     .= " type_code = '$type_code' ";
+				$query     .= " OR type_code = '$type_code' ";
 			}
 			if ($active!="") {
 				if ($type_name!="" || $type_code!="") {
