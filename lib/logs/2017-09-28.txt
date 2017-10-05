@@ -1,0 +1,29 @@
+Time : 15:23:55
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'type_code = 'USB'  ORDER BY type_name ASC' at line 7
+Raw SQL : SELECT 
+					type_id, 
+					type_name, 
+					type_code, 
+					active, 
+					(SELECT COUNT(*) FROM device_list WHERE type_id = dt.type_id) as device_total  
+					FROM device_type AS dt  WHERE  type_name = 'universal serial bus'  OR type_code = 'USB'  type_code = 'USB'  ORDER BY type_name ASC
+
+Time : 13:43:44
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'type_code = 'USB'  ORDER BY type_name ASC' at line 7
+Raw SQL : SELECT 
+					type_id, 
+					type_name, 
+					type_code, 
+					active, 
+					(SELECT COUNT(*) FROM device_list WHERE type_id = dt.type_id) as device_total  
+					FROM device_type AS dt  WHERE  type_name = 'universal serial bus'  OR type_code = 'USB'  type_code = 'USB'  ORDER BY type_name ASC
+
+Time : 13:42:16
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'type_code = 'USB'  ORDER BY type_name ASC' at line 7
+Raw SQL : SELECT 
+					type_id, 
+					type_name, 
+					type_code, 
+					active, 
+					(SELECT COUNT(*) FROM device_list WHERE type_id = dt.type_id) as device_total  
+					FROM device_type AS dt  WHERE  type_name = 'universal serial bus'  OR type_code = 'USB'  type_code = 'USB'  ORDER BY type_name ASC
