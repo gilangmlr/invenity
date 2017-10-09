@@ -50,6 +50,20 @@ jQuery(document).ready(function($) {
 		$("#modal_dialog").modal("show");
 	}
 
+	/**
+	*	Delete User
+	*
+	*
+	*/
+	function confirm_delete_user (username, full_name) {
+		// Set modal value and show it!
+		$("#modal_form").attr('action', './process.php');
+		$("#modal_title").html("Confirmation");
+		$("#modal_content").html("<p class='text-center'>User full name : "+full_name+" ( "+username+" )<br>Sure want to <strong>delete</strong> this user?</p><input type='hidden' name='username' value='"+username+"'><input type='hidden' name='action' value='delete_user'>");
+		$("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+		$("#modal_dialog").modal("show");
+	}
+
 
 
 	/**

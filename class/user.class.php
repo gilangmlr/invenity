@@ -562,6 +562,32 @@ class UserClass
 		return $process."|".$notification_photo_upload;
 	}
 
+	/**
+	* Delete user
+	*
+	* @param 	array 	$dt_user
+	* @return 	string 	$process
+	*
+	*/
+	public function delete_user($dt_user)
+	{
+		// assign variable
+		$username = $dt_user["username"];
+
+		// delete query
+		$query   = "DELETE FROM users WHERE username='$username'";
+
+		// delete from database
+		$process = $this->db->query($query);
+
+		// create system log
+		if ($process>0) {
+			$this->sysClass->save_system_log($_SESSION['username'], $query);
+		}
+
+		return $process;
+	}
+
 
 
 	/**

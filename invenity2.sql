@@ -2,7 +2,8 @@
 SQLyog Ultimate v11.11 (64 bit)
 MySQL - 5.7.11 : Database - invenity
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -241,25 +242,6 @@ CREATE TABLE `system_settings` (
 
 insert  into `system_settings`(`setting_name`,`setting_value`,`active`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values ('admin_email','admin@is_inventory.com','yes','system','2015-12-10 09:33:16','system','2015-12-10 09:33:16',0),('body_background','symphony.png','yes','system','2015-12-10 09:33:16','admin','2016-01-06 11:33:54',4),('color_scheme','site-default.min.css','yes','system','2015-12-10 09:33:16','admin','2016-01-06 11:33:53',4),('device_code_format','BCB/year/devtype','yes','system','2016-11-09 10:48:25','admin','2016-11-09 10:48:25',0),('favicon','favicon.ico','no','system','2015-12-10 09:33:16','system','2015-12-10 09:33:16',0),('inventory_description','<p>General Inventory is still under construction!</p>','yes','system','2015-12-10 09:33:16','admin','2015-12-15 16:18:09',1),('inventory_email','','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:51:41',1),('inventory_fax_number','','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:51:41',1),('inventory_location','<p>Your Location</p>','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:48:18',1),('inventory_logo','sclogo.png','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:51:41',2),('inventory_name','General Inventory','yes','system','2015-12-10 09:33:16','admin','2015-12-15 15:46:47',0),('inventory_phone_number','','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:51:41',1),('inventory_slogan','General Inventory | Standard Edition','yes','system','2015-12-10 09:33:16','admin','2015-12-15 15:46:47',0),('inventory_website','','yes','system','2015-12-10 09:33:16','admin','2016-11-12 11:51:41',1),('location_details','enable','yes','system','2016-11-02 11:14:23','admin','2016-11-08 11:39:25',8);
 
-/*Table structure for table `user_privileges` */
-
-DROP TABLE IF EXISTS `user_privileges`;
-
-CREATE TABLE `user_privileges` (
-  `username` varchar(30) NOT NULL,
-  `privileges` text NOT NULL,
-  `created_by` varchar(30) NOT NULL,
-  `created_date` datetime NOT NULL,
-  `updated_by` varchar(30) NOT NULL,
-  `updated_date` datetime NOT NULL,
-  `revision` tinyint(3) NOT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `user_privileges` */
-
-insert  into `user_privileges`(`username`,`privileges`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values ('admin','*','admin','2015-12-10 08:00:24','admin','2015-12-10 08:00:24',0),('anoerman','5,6','admin','2016-02-17 15:08:38','admin','2016-03-15 10:58:01',1);
-
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
@@ -284,6 +266,26 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`username`,`password`,`salt`,`level`,`active`,`first_name`,`last_name`,`photo`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values ('admin','24ce1033bdfe226997340a7104d79eeb43a54a27c101da24a5eb465c90a10800d6f8671346158f0ecf2efb4f1440f45e9c16fbc3e45d3e53e2bb94839781e95f','1f78147ac76487d519cdf84a31df14b84948c6a01f763b522df896c75a5d7e4f','admin','yes','Super','User','./assets/images/user_photos/standard_photo.jpg','admin','2015-12-02 11:26:49','admin','2015-12-02 11:26:49',0),('anoerman','44a29cbf152b01a23f1396c218e6f26a6e8164c1d0ce5fd30cd5fd66a3433b0388570977ab4d595251399c74401c5deac6b3159c6346affb2dd69ba00f981f87','3ec34b8ad808561d280ee0df7f1c9269581882c96513ae985698e1232c44eda7','user','yes','Noerman','Agustiyan','./assets/images/user_photos/anoerman.png','admin','2016-01-07 09:39:53','admin','2016-03-15 10:58:01',2);
+
+/*Table structure for table `user_privileges` */
+
+DROP TABLE IF EXISTS `user_privileges`;
+
+CREATE TABLE `user_privileges` (
+  `username` varchar(30) NOT NULL,
+  `privileges` text NOT NULL,
+  `created_by` varchar(30) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(30) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  `revision` tinyint(3) NOT NULL,
+  PRIMARY KEY (`username`),
+  FOREIGN KEY (`username`) REFERENCES users(`username`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `user_privileges` */
+
+insert  into `user_privileges`(`username`,`privileges`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values ('admin','*','admin','2015-12-10 08:00:24','admin','2015-12-10 08:00:24',0),('anoerman','5,6','admin','2016-02-17 15:08:38','admin','2016-03-15 10:58:01',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -148,6 +148,20 @@ if (isset($_POST["action"])) {
 		}
 	}
 
+	// Edit User
+	elseif ($action=="delete_user") {
+		$delete_user        = $userClass->delete_user($_POST);
+		if ($delete_user>0) {
+			$_SESSION['delete_status'] = "Successfully deleted!";
+		}
+		else {
+			$_SESSION['delete_status'] = "Error, failed to delete user!";
+		}
+		
+		header("Location: ./user_management.php");
+		die();
+	}
+
 	/**
 	*	=============== END ===============
 	*

@@ -26,6 +26,12 @@ include("./include/include_header.php");
 		// clear save_status session value
 		$_SESSION["save_status"] = "";
 	}
+	if (isset($_SESSION['delete_status']) && $_SESSION['delete_status']!=""){
+		// show info
+		echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[delete_status]</div>";
+		// clear save_status session value
+		$_SESSION["delete_status"] = "";
+	}
 	?>
 
 	<div class="panel panel-primary">
@@ -61,12 +67,15 @@ include("./include/include_header.php");
 						$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='uactive_$username' value='no'>";
 						$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"user_change_status('$username', '$first_name $last_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 					}
+					$delete_button = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"confirm_delete_user('$username', '$first_name $last_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 					$data_table    .= "<tr>
 						<td id='username_$username'>$username</td>
 						<td id='real_name_$username'>$first_name $last_name</td>
 						<td><img src='$photo' width='100'></td>
 						<td>$active_status</td>
-						<td>$button_status <a href='user_edit.php?username=$username' title='Edit' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-pencil'></i></a></td>
+						<td>$button_status <a href='user_edit.php?username=$username' title='Edit' class='btn btn-default btn-sm'><i class='glyphicon glyphicon-pencil'></i></a>
+							$delete_button
+						</td>
 					</tr>";
 				}
 				$data_table .= "</tbody></table>";
