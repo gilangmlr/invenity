@@ -37,7 +37,7 @@ CREATE TABLE `component` (
 
 /*Data for the table `component` */
 
-insert  into `component`(`component_id`,`component_name`,`component_page`,`component_type`,`active`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values (1,'User Management','user_management.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:59',2),(2,'Component Management','component_management.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:29',2),(3,'System Log','system_log.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:55',2),(4,'System Settings','system_settings.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:57',2),(5,'Device Management','device_management.php','system','yes','admin','2015-12-03 15:01:55','admin','2015-12-22 14:46:47',2),(6,'Location Management','location_management.php','system','yes','admin','2015-12-03 15:01:55','admin','2015-12-22 14:46:52',2),(7,'Report','report.php','system','yes','admin','2015-12-22 11:17:36','admin','2016-02-17 14:14:29',4);
+insert  into `component`(`component_id`,`component_name`,`component_page`,`component_type`,`active`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values (1,'User Management','user_management.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:59',2),(2,'Component Management','component_management.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:29',2),(3,'System Log','system_log.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:55',2),(4,'System Settings','system_settings.php','system','yes','admin','2015-12-04 07:54:58','admin','2015-12-22 14:46:57',2),(5,'Device Management','device_management.php','system','yes','admin','2015-12-03 15:01:55','admin','2015-12-22 14:46:47',2),(6,'Location Management','location_management.php','system','yes','admin','2015-12-03 15:01:55','admin','2015-12-22 14:46:52',2),(7,'Report','report.php','system','yes','admin','2015-12-22 11:17:36','admin','2016-02-17 14:14:29',4),(8,'Rental Form','rental_form.php','system','yes','admin','2017-10-09 22:39:00','admin','2017-10-09 22:39:00',1);
 
 /*Table structure for table `device_changes` */
 
@@ -286,6 +286,21 @@ CREATE TABLE `user_privileges` (
 /*Data for the table `user_privileges` */
 
 insert  into `user_privileges`(`username`,`privileges`,`created_by`,`created_date`,`updated_by`,`updated_date`,`revision`) values ('admin','*','admin','2015-12-10 08:00:24','admin','2015-12-10 08:00:24',0),('anoerman','5,6','admin','2016-02-17 15:08:38','admin','2016-03-15 10:58:01',1);
+
+/*Table structure for table `component` */
+
+DROP TABLE IF EXISTS `rental`;
+
+CREATE TABLE `rental` (
+  `username` varchar(30) NOT NULL,
+  `device_id` int(11) NOT NULL,
+  `renter_name` varchar(150) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`device_id`),
+  FOREIGN KEY (`username`) REFERENCES users(`username`) ON DELETE CASCADE,
+  FOREIGN KEY (`device_id`) REFERENCES device_list(`device_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

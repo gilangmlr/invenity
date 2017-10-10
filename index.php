@@ -145,6 +145,7 @@ else {
 
 	<!-- Aditional Script -->
 	<script type="text/javascript" src="./assets/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="./assets/js/jquery-ui-1.12.1.min.js"></script>
 	<script type="text/javascript" src="./assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="./assets/plugins/pace/pace.js"></script>
 

@@ -37,6 +37,7 @@
 			<!-- Styling -->
 			<link rel="stylesheet" type="text/css" href="./assets/css/<?php if ($invClass->setting_data("color_scheme")!="") { echo $invClass->setting_data("color_scheme"); } else {echo "site-default.min.css";} ?>">
 			<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css"> -->
+			<link rel="stylesheet" type="text/css" href="./assets/css/jquery-ui-1.12.1.min.css">
 			<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">
 			<link rel="icon" href="./assets/images/favicon.ico">
 		</head>
