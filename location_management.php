@@ -29,6 +29,13 @@ $setting_location_details = $invClass->setting_data("location_details");
 		// clear save_status session value
 		$_SESSION["save_status"] = "";
 	}
+
+	if (isset($_SESSION['delete_status']) && $_SESSION['delete_status']!=""){
+		// show info
+		echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[delete_status]</div>";
+		// clear save_status session value
+		$_SESSION["delete_status"] = "";
+	}
 	?>
 
 	<div class="panel panel-primary">
@@ -100,6 +107,7 @@ $setting_location_details = $invClass->setting_data("location_details");
 								$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='lactive_$location_id' value='no'>";
 								$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"location_change_status('$location_id', '$location_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 							}
+							$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"location_delete('$location_id', '$location_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 							?>
 							<tr>
 								<input type='hidden' name='location_id_<?php echo $location_id; ?>' id='location_id_<?php echo $location_id; ?>' value='<?php echo $location_id; ?>' >
@@ -111,7 +119,9 @@ $setting_location_details = $invClass->setting_data("location_details");
 								<td><?php echo $location_data["floor_name"]; ?><input type="hidden" id='location_floor_<?php echo $location_id; ?>' value="<?php echo $location_data["floor_id"]; ?>"></td>
 								<?php endif ?>
 								<td><?php echo $active_status; ?></td>
-								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location('<?php echo $location_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button></td>
+								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location('<?php echo $location_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button>
+									<?php echo $button_delete; ?>
+								</td>
 							</tr>
 							<?php
 						}
@@ -152,12 +162,15 @@ $setting_location_details = $invClass->setting_data("location_details");
 								$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='place_active_$place_id' value='no'>";
 								$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"location_detail_change_status('place', '$place_id', '$place_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 							}
+							$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"location_detail_delete('place', '$place_id', '$place_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 							?>
 							<tr>
 								<input type='hidden' name='place_id_<?php echo $place_id; ?>' id='place_id_<?php echo $place_id; ?>' value='<?php echo $place_id; ?>' >
 								<td id='place_name_<?php echo $place_id; ?>'><?php echo $place_name; ?></td>
 								<td><?php echo $active_status; ?></td>
-								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('place', '<?php echo $place_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button></td>
+								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('place', '<?php echo $place_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button>
+									<?php echo $button_delete; ?>
+								</td>
 							</tr>
 							<?php
 						}
@@ -197,12 +210,15 @@ $setting_location_details = $invClass->setting_data("location_details");
 								$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='building_active_$building_id' value='no'>";
 								$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"location_detail_change_status('building', '$building_id', '$building_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 							}
+							$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"location_detail_delete('building', '$building_id', '$building_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 							?>
 							<tr>
 								<input type='hidden' name='building_id_<?php echo $building_id; ?>' id='building_id_<?php echo $building_id; ?>' value='<?php echo $building_id; ?>' >
 								<td id='building_name_<?php echo $building_id; ?>'><?php echo $building_name; ?></td>
 								<td><?php echo $active_status; ?></td>
-								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('building', '<?php echo $building_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button></td>
+								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('building', '<?php echo $building_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button>
+									<?php echo $button_delete; ?>
+								</td>
 							</tr>
 							<?php
 						}
@@ -242,12 +258,15 @@ $setting_location_details = $invClass->setting_data("location_details");
 								$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='floor_active_$floor_id' value='no'>";
 								$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"location_detail_change_status('floor', '$floor_id', '$floor_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 							}
+							$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"location_detail_delete('floor', '$floor_id', '$floor_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 							?>
 							<tr>
 								<input type='hidden' name='floor_id_<?php echo $floor_id; ?>' id='floor_id_<?php echo $floor_id; ?>' value='<?php echo $floor_id; ?>' >
 								<td id='floor_name_<?php echo $floor_id; ?>'><?php echo $floor_name; ?></td>
 								<td><?php echo $active_status; ?></td>
-								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('floor', '<?php echo $floor_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button></td>
+								<td><?php echo $button_status; ?> <button class='btn btn-default btn-sm' onclick="show_edit_location_details('floor', '<?php echo $floor_id; ?>')"><i class='glyphicon glyphicon-pencil'></i></button>
+									<?php echo $button_delete; ?>
+								</td>
 							</tr>
 							<?php
 						}

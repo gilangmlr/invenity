@@ -302,6 +302,19 @@ if (isset($_POST["action"])) {
 		die();
 	}
 
+	// Location delete
+	elseif ($action=="location_delete") {
+		$location_delete = $locClass->location_delete($_POST);
+		if ($location_delete>0) {
+			$_SESSION['delete_status'] = "Successfully deleted!";
+		}
+		else {
+			$_SESSION['delete_status'] = "Error, failed to delete location!";
+		}
+		header("Location: ./location_management.php");
+		die();
+	}
+
 
 	// ==== Location Detail ==== //
 	// Add Location
@@ -343,6 +356,19 @@ if (isset($_POST["action"])) {
 		}
 		else {
 			$_SESSION['save_status'] = "Error, failed to change status!";
+		}
+		header("Location: ./location_management.php");
+		die();
+	}
+
+	// Location detail delete
+	elseif ($action=="location_detail_delete") {
+		$location_detail_delete = $locClass->location_detail_delete($_POST);
+		if ($location_detail_delete>0) {
+			$_SESSION['delete_status'] = "Successfully deleted!";
+		}
+		else {
+			$_SESSION['delete_status'] = "Error, failed to delete location detail!";
 		}
 		header("Location: ./location_management.php");
 		die();

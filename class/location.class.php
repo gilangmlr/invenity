@@ -224,6 +224,32 @@ class LocationClass
 		return $process;
 	}
 
+	/**
+	* Delete location
+	*
+	* @param 	array 	$dt_location
+	* @return 	string 	$process
+	*
+	*/
+	public function location_delete($dt_location)
+	{
+		// assign variable
+		$location_id   = $dt_location["location_id"];
+
+		// create query
+		$query   = "DELETE FROM location WHERE location_id='$location_id'";
+
+		// edit to database
+		$process = $this->db->query($query);
+
+		// create system log
+		if ($process>0) {
+			$this->sysClass->save_system_log($_SESSION['username'], $query);
+		}
+
+		return $process;
+	}
+
 
 	/**
 	*	Location details
@@ -341,6 +367,35 @@ class LocationClass
 		$query   = "UPDATE $table_name SET active='$status', updated_by='$_SESSION[username]', updated_date=NOW(), revision=revision+1 WHERE $field_name='$location_detail_id'";
 
 		// edit to database
+		$process = $this->db->query($query);
+
+		// create system log
+		if ($process>0) {
+			$this->sysClass->save_system_log($_SESSION['username'], $query);
+		}
+
+		return $process;
+	}
+
+	/**
+	* Delete location detail
+	*
+	* @param 	array 	$details
+	* @return 	string 	$process
+	*
+	*/
+	public function location_detail_delete($details)
+	{
+		// assign variable
+		$location_detail_type = $details["location_detail_type"];
+		$location_detail_id   = $details["location_detail_id"];
+		$table_name           = "location_".$location_detail_type;
+		$field_name           = $location_detail_type."_id";
+
+		// delete query
+		$query   = "DELETE FROM $table_name WHERE $field_name='$location_detail_id'";
+
+		// delete from database
 		$process = $this->db->query($query);
 
 		// create system log

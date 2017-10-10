@@ -56,6 +56,23 @@ jQuery(document).ready(function($) {
 	}
 
 
+	/**
+	*	Delete location
+	*	
+	*	@param 	location_id
+	*	@param 	location_name
+	*
+	*/
+	function location_delete (location_id, location_name) {
+		// Set modal value and show it!
+		$("#modal_form").attr('action', './process.php');
+		$("#modal_title").html("Confirmation");
+		$("#modal_content").html("<p class='text-center'>Location name : "+location_name+" <br>Sure want to <strong>delete</strong> this location?</p><input type='hidden' name='location_id' value='"+location_id+"'><input type='hidden' name='action' value='location_delete'>");
+		$("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+		$("#modal_dialog").modal("show");
+	}
+
+
 
 	/**
 	*	Show Edit Location Modal
@@ -122,6 +139,22 @@ jQuery(document).ready(function($) {
 		$("#modal_dialog").modal("show");
 	}
 
+	/**
+	*	Delete location location_detail
+	*	
+	*	@param 	location_detail_type
+	*	@param 	location_detail_id
+	*	@param 	location_detail_name
+	*
+	*/
+	function location_detail_delete (location_detail_type, location_detail_id, location_detail_name) {
+		// Set modal value and show it!
+		$("#modal_form").attr('action', './process.php');
+		$("#modal_title").html("Confirmation");
+		$("#modal_content").html("<p class='text-center'>location_detail name : "+location_detail_name+" <br>Sure want to <strong>delete</strong> this location detail?</p><input type='hidden' name='location_detail_id' value='"+location_detail_id+"'><input type='hidden' name='location_detail_type' value='"+location_detail_type+"'><input type='hidden' name='action' value='location_detail_delete'>");
+		$("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+		$("#modal_dialog").modal("show");
+	}
 
 
 	/**
