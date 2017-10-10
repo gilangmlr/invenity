@@ -146,6 +146,35 @@ class DeviceClass
 
 
 	/**
+	* Delete device type
+	*
+	* @param 	array 	$dt_type
+	* @return 	string 	$process
+	*
+	*/
+	public function device_type_delete($dt_type)
+	{
+		// assign variable
+		$type_id   = $dt_type["type_id"];
+
+		// delete query
+		$query   = "DELETE FROM device_type 
+					WHERE type_id='$type_id'";
+
+		// delete from database
+		$process = $this->db->query($query);
+
+		// create system log
+		if ($process>0) {
+			$this->sysClass->save_system_log($_SESSION['username'], $query);
+		}
+
+		return $process;
+	}
+
+
+
+	/**
 	* Select device
 	* 
 	* @param 	string 	$device_serial
@@ -679,6 +708,33 @@ class DeviceClass
 		}
 
 		return $process.$notification;
+	}
+
+	/**
+	* Delete device
+	*
+	* @param 	array 	$dt_device
+	* @return 	string 	$process
+	*
+	*/
+	public function device_delete($dt_device)
+	{
+		// assign variable
+		$device_id   = $dt_device["device_id"];
+
+		// delete query
+		$query   = "DELETE FROM device_list
+					WHERE device_id='$device_id'";
+
+		// delete from database
+		$process = $this->db->query($query);
+
+		// create system log
+		if ($process>0) {
+			$this->sysClass->save_system_log($_SESSION['username'], $query);
+		}
+
+		return $process;
 	}
 	
 

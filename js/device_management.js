@@ -72,6 +72,22 @@ jQuery(document).ready(function($) {
 		$("#modal_dialog").modal("show");
 	}
 
+	/**
+	*	Delete Device Type
+	*
+	*	@param 		type_id
+	*	@param 		type_name
+	*
+	*/
+	function device_type_delete (type_id, type_name) {
+		// Set modal value and show it!
+		$("#modal_form").attr('action', './process.php');
+		$("#modal_title").html("Confirmation");
+		$("#modal_content").html("<p class='text-center'>Device Type Name : "+type_name+"<br>Sure want to <strong>delete</strong> this device type?</p><input type='hidden' name='type_id' value='"+type_id+"'><input type='hidden' name='action' value='device_type_delete'>");
+		$("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+		$("#modal_dialog").modal("show");
+	}
+
 
 	/**
 	* 	Show Add device
@@ -126,4 +142,19 @@ jQuery(document).ready(function($) {
 		$("#action").val("edit_device");
 		$("#modal_title_device").html("Edit Device");
 		$("#modal_dialog_device").modal("show");
+	}
+
+	/**
+	*	Delete Device
+	*
+	*	@param 		device_id
+	*
+	*/
+	function device_delete (device_id) {
+		// Set modal value and show it!
+		$("#modal_form").attr('action', './process.php');
+		$("#modal_title").html("Confirmation");
+		$("#modal_content").html("<p class='text-center'>Device Code : "+$("#l_dev_code_"+device_id).val()+", Device Type : "+$("#l_dev_type_name_"+device_id).val()+"<br />Device Brand : "+$("#l_dev_brand_"+device_id).val()+", Device Model : "+$("#l_dev_model_"+device_id).val()+"<br>Sure want to <strong>delete</strong> this device?</p><input type='hidden' name='device_id' value='"+device_id+"'><input type='hidden' name='action' value='device_delete'>");
+		$("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+		$("#modal_dialog").modal("show");
 	}

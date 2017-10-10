@@ -208,6 +208,19 @@ if (isset($_POST["action"])) {
 		die();
 	}
 
+	// Device type delete
+	elseif ($action=="device_type_delete") {
+		$device_type_delete = $devClass->device_type_delete($_POST);
+		if ($device_type_delete>0) {
+			$_SESSION['delete_status'] = "Successfully deleted!";
+		}
+		else {
+			$_SESSION['delete_status'] = "Error, failed to delete device type!";
+		}
+		header("Location: ./device_management.php");
+		die();
+	}
+
 
 	// Add device
 	elseif ($action=="add_device") {
@@ -239,6 +252,19 @@ if (isset($_POST["action"])) {
 		}
 		else {
 			$_SESSION['save_status'] = "Error, failed to save data! $edv_notif";
+		}
+		header("Location: ./device_management.php");
+		die();
+	}
+
+	// Device type delete
+	elseif ($action=="device_delete") {
+		$device_delete = $devClass->device_delete($_POST);
+		if ($device_delete>0) {
+			$_SESSION['delete_status'] = "Successfully deleted!";
+		}
+		else {
+			$_SESSION['delete_status'] = "Error, failed to delete device!";
 		}
 		header("Location: ./device_management.php");
 		die();
@@ -309,7 +335,7 @@ if (isset($_POST["action"])) {
 			$_SESSION['delete_status'] = "Successfully deleted!";
 		}
 		else {
-			$_SESSION['delete_status'] = "Error, failed to delete location!";
+			$_SESSION['delete_status'] = "Error, failed to delete locationf!";
 		}
 		header("Location: ./location_management.php");
 		die();

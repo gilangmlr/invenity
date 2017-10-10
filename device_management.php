@@ -31,6 +31,13 @@ include("./include/include_header.php");
 		// clear save_status session value
 		$_SESSION["save_status"] = "";
 	}
+
+	if (isset($_SESSION['delete_status']) && $_SESSION['delete_status']!=""){
+		// show info
+		echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[delete_status]</div>";
+		// clear save_status session value
+		$_SESSION["delete_status"] = "";
+	}
 	?>
 
 	<div class="panel panel-primary">
@@ -140,6 +147,7 @@ include("./include/include_header.php");
 									<td>
 										<button type='button' class='btn btn-primary' title='Show Detail' onclick=\"show_device_detail('$device_id')\"><i class='glyphicon glyphicon-eye-open'></i></button>
 										<button type='button' class='btn btn-default' title='Edit Device' onclick=\"show_edit_device('$device_id')\"><i class='glyphicon glyphicon-pencil'></i></button>
+										<button type='button' class='btn btn-danger' title='Delete Device' onclick=\"device_delete('$device_id')\"><i class='glyphicon glyphicon-trash'></i></button>
 									</td>
 								</tr>";
 							}
@@ -235,12 +243,13 @@ include("./include/include_header.php");
 									$active_status = "<span class='label label-danger'>No</span><input type='hidden' id='dtactive_$type_id' value='no'>";
 									$button_status = "<button type='button' title='Activate' class='btn btn-success btn-sm' onclick=\"device_type_change_status('$type_id', '$type_name', 'yes')\"><i class='glyphicon glyphicon-ok'></i></button>";
 								}
+								$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"device_type_delete('$type_id', '$type_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 								$content .= "<tr>
 									<td>$no</td>
 									<td>$type_name</td>
 									<td>$type_code</td>
 									<td>$active_status</td>
-									<td>$button_status</td>
+									<td>$button_status $button_delete</td>
 								</tr>";
 							}
 							$content .= "</tbody></table>";
