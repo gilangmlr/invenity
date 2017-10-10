@@ -30,7 +30,28 @@ class RentalClass
   */
   public function show_rentals()
   {
-    $query  = "SELECT * FROM rental WHERE true";
+    $query = "SELECT DATE_FORMAT(r.`rental_date`, '%Y-%m-%d') as `rental_date_formatted`, r.*, a.*, 
+          b.`type_name`, 
+          c.`location_name`, 
+          d.`place_id`, 
+          d.`building_id`, 
+          d.`floor_id`, 
+          lp.`place_name`, 
+          lb.`building_name`, 
+          lf.`floor_name` 
+          FROM rental r 
+          INNER JOIN device_list a  ON r.`device_id` =  a.`device_id`
+          LEFT JOIN device_type b ON a.`type_id` = b.`type_id` 
+          LEFT JOIN location c ON a.`location_id` = c.`location_id` 
+          LEFT JOIN location_details d ON a.`location_id` = d.`location_id` 
+          LEFT JOIN location_place lp ON d.`place_id` = lp.`place_id` 
+          LEFT JOIN location_building lb ON d.`building_id` = lb.`building_id`  
+          LEFT JOIN location_floor lf ON d.`floor_id` = lf.`floor_id`
+          WHERE true";
+    if ($_SESSION['privileges'] !== '*') {
+      $username = $_SESSION['username'];
+      $query .= " AND r.`username` = '$username'";
+    }
     $result = $this->db->query($query);
     return $result;
   }
@@ -47,108 +68,10 @@ class RentalClass
     // assign variable
     $device_id   = $dt_rental["device_id"];
     $renter_name = $dt_rental["renter_name"];
+    $rental_date = $dt_rental["rental_date"];
 
     // create query
-    $query   = "INSERT INTO rental (username, device_id, renter_name, created_date, updated_date) VALUES ('$_SESSION[username]', '$device_id', '$renter_name', NOW(), NOW())";
-
-    // add to database
-    $process = $this->db->query($query);
-
-    // create system log
-    if ($process>0) {
-      $this->sysClass->save_system_log($_SESSION['username'], $query);
-    }
-
-    return $process;
-  }
-
-
-  /**
-  * Add new components
-  *
-  * @param  array   $dt_component
-  * @return   string  $process
-  *
-  */
-  public function add_component($dt_component)
-  {
-    // assign variable
-    $component_name = $dt_component["component_name"];
-    $component_page = $dt_component["component_page"];
-    $active         = $dt_component["active"];
-
-    // check if data exists
-    $query   = "SELECT component_id FROM component WHERE component_name = '$component_name' OR component_page = '$component_page'";
-    $num_row = count($this->db->query($query));
-
-    // if exists, process = 0
-    if ($num_row>=1) {
-      $process = 0;
-    }
-    // save process
-    else {
-      // create query
-      $query   = "INSERT INTO component (component_name, component_page, component_type, active, created_by, created_date, updated_by, updated_date) VALUES ('$component_name', '$component_page', 'standard', '$active', '$_SESSION[username]', NOW(), '$_SESSION[username]', NOW())";
-
-      // add to database
-      $process = $this->db->query($query);
-
-      // create system log
-      if ($process>0) {
-        $this->sysClass->save_system_log($_SESSION['username'], $query);
-      }
-    }
-
-    return $process;
-  }
-
-
-  /**
-  * Edit components
-  *
-  * @param  array   $dt_component
-  * @return   string  $process
-  *
-  */
-  public function edit_component($dt_component)
-  {
-    // assign variable
-    $component_id   = $dt_component["component_id"];
-    $component_name = $dt_component["component_name"];
-    $component_page = $dt_component["component_page"];
-    $active         = $dt_component["active"];
-
-    // create query
-    $query = "UPDATE component SET component_name = '$component_name', component_page = '$component_page', active = '$active', updated_by = '$_SESSION[username]', updated_date = NOW(), revision = revision+1 WHERE component_id = '$component_id' ";
-
-    // add to database
-    $process = $this->db->query($query);
-
-    // create system log
-    if ($process>0) {
-      $this->sysClass->save_system_log($_SESSION['username'], $query);
-    }
-
-    return $process;
-  }
-
-
-
-  /**
-  * Change component status
-  *
-  * @param  array   $dt_component
-  * @return   string  $process
-  *
-  */
-  public function component_change_status($dt_component)
-  {
-    // assign variable
-    $component_id = $dt_component["component_id"];
-    $active       = $dt_component["status"];
-
-    // create query
-    $query   = "UPDATE component SET active = '$active', updated_by = '$_SESSION[username]', updated_date = NOW(), revision = revision+1 WHERE component_id = '$component_id'";
+    $query   = "INSERT INTO rental (username, rental_date, device_id, renter_name, created_date, updated_date) VALUES ('$_SESSION[username]', '$rental_date', '$device_id', '$renter_name', NOW(), NOW())";
 
     // add to database
     $process = $this->db->query($query);

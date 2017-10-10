@@ -293,6 +293,7 @@ DROP TABLE IF EXISTS `rental`;
 
 CREATE TABLE `rental` (
   `username` varchar(30) NOT NULL,
+  `rental_date` datetime NOT NULL,
   `device_id` int(11) NOT NULL,
   `renter_name` varchar(150) NOT NULL,
   `created_date` datetime NOT NULL,

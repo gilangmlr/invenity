@@ -5,7 +5,7 @@
 *   @version  0.1
 */
 jQuery(document).ready(function($) {
-  $("#rental_date").datepicker().datepicker("setDate", new Date());
+  $("#rental_date").datepicker({ dateFormat: 'yy-mm-dd' }).datepicker("setDate", new Date());
 
   for (var idx in devList) {
     var dev = devList[idx];

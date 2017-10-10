@@ -366,10 +366,10 @@ class UserClass
 				trim($user_privileges);
 				if ($user_privileges!="") {
 					str_replace(" ", ",", $user_privileges);
-					$user_privileges = "5,6,7,".$user_privileges;
+					$user_privileges = "5,6,7,8,".$user_privileges;
 				}
 				else {
-					$user_privileges = "5,6,7";
+					$user_privileges = "5,6,7,8";
 				}
 
 				// create query privileges
