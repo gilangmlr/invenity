@@ -234,6 +234,25 @@ class DeviceClass
 
 
 	/**
+	* Show all device types
+	* 
+	* @param 	string 	$type_id
+	* @return 	array 	$process
+	* 
+	*/
+	public function show_all_device_types()
+	{
+		$query = "SELECT *
+					FROM device_type
+					WHERE true";
+
+		$process = $this->db->query($query);
+		return $process;
+	}
+
+
+
+	/**
 	* Select device by type_id
 	* 
 	* @param 	string 	$type_id

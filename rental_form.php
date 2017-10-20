@@ -79,15 +79,27 @@ include("./include/include_header.php");
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Device Code</label>
+                    <label class="control-label col-sm-3">Device Type</label>
                     <div class="col-sm-9">
-                        <select name="device_code" id="device_code"></select>
+                        <select name="device_type" id="device_type">
+                        <?php
+                            // Get all device types
+                            $dev_types     = $deviceclass->show_all_device_types();
+                            $data_num = count($dev_types);
+
+                            if ($data_num!=0) {
+                              foreach ($dev_types as $type_data) {
+                                echo '<option value="'.$type_data["type_id"].'">'.$type_data["type_name"].'</option>';
+                              }
+                            }
+                        ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Device Type</label>
+                    <label class="control-label col-sm-3">Device Code</label>
                     <div class="col-sm-9">
-                        <input type="text" id="type_name" disabled>
+                        <select name="device_code" id="device_code"></select>
                     </div>
                 </div>
                 <div class="form-group">
