@@ -29,8 +29,10 @@ jQuery(document).ready(function($) {
   $("#device_type").change(function() {
     var devs = getDevicesByType($(this).val());
     $("#device_code").html('');
+    $("button[type=submit]").prop('disabled', false);
     if (devs.length === 0) {
       $("#device_code").html('<option disabled>No device found</option>');
+      $("button[type=submit]").prop('disabled', true);
     }
     for (var i = 0; i < devs.length; i++) {
       $("#device_code").append($('<option value="'+devs[i]["device_id"]+'">'+devs[i]["device_code"]+'</option>'));

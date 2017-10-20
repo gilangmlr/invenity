@@ -99,31 +99,31 @@ include("./include/include_header.php");
                 <div class="form-group">
                     <label class="control-label col-sm-3">Device Code</label>
                     <div class="col-sm-9">
-                        <select name="device_code" id="device_code"></select>
+                        <select name="device_code" id="device_code" data-validetta="required"></select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Brand</label>
                     <div class="col-sm-9">
-                        <input type="text" id="device_brand" disabled>
+                        <input type="text" id="device_brand" disabled data-validetta="required">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Model</label>
                     <div class="col-sm-9">
-                        <input type="text" id="device_model" disabled>
+                        <input type="text" id="device_model" disabled data-validetta="required">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Serial</label>
                     <div class="col-sm-9">
-                        <input type="text" id="device_serial" disabled>
+                        <input type="text" id="device_serial" disabled data-validetta="required">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Location</label>
                     <div class="col-sm-9">
-                        <input type="text" id="location_name" disabled>
+                        <input type="text" id="location_name" disabled data-validetta="required">
                     </div>
                 </div>
               <hr class="dashed" />
