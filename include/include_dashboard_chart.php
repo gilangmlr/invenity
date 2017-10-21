@@ -7,7 +7,7 @@ $device_datas_new       = $devClass->show_device("", "new");
 $device_datas_in_use    = $devClass->show_device("", "in use");
 $device_datas_damaged   = $devClass->show_device("", "damaged");
 $device_datas_repaired  = $devClass->show_device("", "repaired");
-$device_datas_discarded = $devClass->show_device("", "discarded");
+$device_datas_keep = $devClass->show_device("", "keep");
 
 // Loop device data all
 $all_total = 0;
@@ -39,10 +39,10 @@ foreach ($device_datas_repaired as $ddr) {
 	$repaired_total++;
 }
 
-// Loop device data discarded
-$discarded_total = 0;
-foreach ($device_datas_discarded as $ddds) {
-	$discarded_total++;
+// Loop device data keep
+$keep_total = 0;
+foreach ($device_datas_keep as $ddds) {
+	$keep_total++;
 }
 
 ?>
@@ -51,14 +51,14 @@ foreach ($device_datas_discarded as $ddds) {
 <script type="text/javascript" src="./assets/plugins/chartjs/Chart.min.js"></script>
 <script type="text/javascript">
 	var barChartData = {
-		labels : [ "All Device", "New Device", "In Use Device", "Damaged Device", "Repaired Device", "Discarded Device" ],
+		labels : [ "All Device", "New Device", "In Use Device", "Damaged Device", "Repaired Device", "Keep in IT Device" ],
 		datasets : [
 			{
 				fillColor: "rgba(151,187,205,0.5)",
 	            strokeColor: "rgba(151,187,205,0.8)",
 	            highlightFill: "rgba(151,187,205,0.75)",
 	            highlightStroke: "rgba(151,187,205,1)",
-				data : [<?php echo $all_total.",".$new_total.",".$in_use_total.",".$damaged_total.",".$repaired_total.",".$discarded_total; ?>]
+				data : [<?php echo $all_total.",".$new_total.",".$in_use_total.",".$damaged_total.",".$repaired_total.",".$keep_total; ?>]
 			}
 		]
 

@@ -84,7 +84,7 @@
                                 <option value="in use" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="in use") {echo "selected";} ?>>In Use</option>
                                 <option value="damaged" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="damaged") {echo "selected";} ?>>Damaged</option>
                                 <option value="repaired" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="repaired") {echo "selected";} ?>>Repaired</option>
-                                <option value="discarded" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="discarded") {echo "selected";} ?>>Discarded</option>
+                                <option value="keep" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="keep") {echo "selected";} ?>>Keep in IT</option>
                             </select> 
                         </div>
                     </div>

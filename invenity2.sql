@@ -68,7 +68,7 @@ CREATE TABLE `device_list` (
   `device_color` varchar(100) NOT NULL COMMENT 'Color',
   `device_description` text,
   `device_photo` text,
-  `device_status` enum('new','in use','damaged','repaired','discarded') NOT NULL DEFAULT 'new',
+  `device_status` enum('new','in use','damaged','repaired','keep') NOT NULL DEFAULT 'new',
   `location_id` int(11) DEFAULT NULL COMMENT 'FK Location',
   `device_deployment_date` datetime DEFAULT NULL COMMENT 'Fill this field when assigned to a location',
   `created_by` varchar(30) NOT NULL,
