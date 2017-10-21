@@ -66,12 +66,12 @@ class RentalClass
   public function rent_device($dt_rental)
   {
     // assign variable
-    $device_id   = $dt_rental["device_id"];
+    $device_id   = intval($dt_rental["device_id"]);
     $renter_name = $dt_rental["renter_name"];
     $rental_date = $dt_rental["rental_date"];
 
     // create query
-    $query   = "INSERT INTO rental (username, rental_date, device_id, renter_name, created_date, updated_date) VALUES ('$_SESSION[username]', '$rental_date', '$device_id', '$renter_name', NOW(), NOW())";
+    $query   = "INSERT INTO rental (username, rental_date, device_id, renter_name, created_date, updated_date) VALUES ('$_SESSION[username]', '$rental_date', $device_id, '$renter_name', NOW(), NOW())";
 
     // add to database
     $process = $this->db->query($query);
@@ -79,6 +79,17 @@ class RentalClass
     // create system log
     if ($process>0) {
       $this->sysClass->save_system_log($_SESSION['username'], $query);
+    }
+
+    // create query
+    $queryUpd   = "UPDATE device_list SET device_status = 'in use' WHERE device_id = $device_id";
+
+    // update database
+    $processUpd = $this->db->query($queryUpd);
+
+    // create system log
+    if ($processUpd>0) {
+      $this->sysClass->save_system_log($_SESSION['username'], $queryUpd);
     }
 
     return $process;
