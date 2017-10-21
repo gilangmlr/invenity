@@ -460,6 +460,19 @@ if (isset($_POST["action"])) {
 		die();
 	}
 
+	// Return device
+	elseif ($action=="return_device") {
+		$return_device = $rentClass->return_device($_POST);
+		if ($return_device>0) {
+			$_SESSION['return_status'] = "Successfully returned!";
+		}
+		else {
+			$_SESSION['return_status'] = "Error, failed to return device!";
+		}
+		header("Location: ./dashboard.php");
+		die();
+	}
+
 	/**
 	*	=============== END ===============
 	*

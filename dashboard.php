@@ -44,6 +44,21 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 
 		?>
     	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <?php 
+        if (isset($_SESSION['rental_status']) && $_SESSION['rental_status']!=""){
+          // show info
+          echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[rental_status]</div>";
+          // clear save_status session value
+          $_SESSION["rental_status"] = "";
+        }
+
+        if (isset($_SESSION['return_status']) && $_SESSION['return_status']!=""){
+          // show info
+          echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[return_status]</div>";
+          // clear save_status session value
+          $_SESSION["return_status"] = "";
+        }
+        ?>
     		<div class="panel panel-primary">
     			<div class="panel-heading">
     				<h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Status Monitor</h3>
@@ -109,6 +124,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                     <td>$location_name</td>
                     <td>
                       <button type='button' class='btn btn-primary' title='Show Detail' onclick=\"show_rental_detail('$device_id')\"><i class='glyphicon glyphicon-eye-open'></i></button>
+                      <button type='button' class='btn btn-primary' title='Return Device' onclick=\"return_device('$device_id')\"><i class='glyphicon glyphicon-ok'></i></button>
                     </td>
                     <input type=\"hidden\" id=\"rental_date_$device_id\" value=\"$rental_date\">
                     <input type=\"hidden\" id=\"renter_name_$device_id\" value=\"$renter_name\">
@@ -151,8 +167,6 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 
     echo "<script type='text/javascript' src='./js/rental_management.js'></script>";
     include("./include/include_modal_rental_detail.php");
-
-    require_once(__DIR__ . '/class/rental.class.php');
 
 	}
 }

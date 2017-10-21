@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
   /**
   * Show rental detail
   * 
-  * @param    rental_id
+  * @param    device_id
   * 
   */
   function show_rental_detail (device_id) {
@@ -37,4 +37,19 @@ jQuery(document).ready(function($) {
     $("#dl_dev_building").html($("#building_name_"+device_id).val());
     $("#dl_dev_floor").html($("#floor_name_"+device_id).val());
     $("#modal_dialog_rental_detail").modal("show");
+  }
+
+  /**
+  * Return device
+  * 
+  * @param    device_id
+  * 
+  */
+  function return_device (device_id) {
+    // Set modal value and show it!
+    $("#modal_form").attr('action', './process.php');
+    $("#modal_title").html("Confirmation");
+    $("#modal_content").html("<p class='text-center'>Device Code: "+$("#device_code_"+device_id).val()+", Device Type: "+$("#device_type_"+device_id).val()+", Device Brand: "+$("#device_brand_"+device_id).val()+"<br>Sure want to <strong>return</strong> this device?</p><input type='hidden' name='device_id' value='"+device_id+"'><input type='hidden' name='action' value='return_device'>");
+    $("#modal_footer").html("<button type='button' class='btn btn-default' data-dismiss='modal'>Cancel</button> <button type='submit' class='btn btn-primary'>Yes</button>");
+    $("#modal_dialog").modal("show");
   }

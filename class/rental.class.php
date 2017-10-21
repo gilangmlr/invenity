@@ -94,6 +94,43 @@ class RentalClass
 
     return $process;
   }
+
+  /**
+  * Return device
+  *
+  * @param  array   $dt_rental
+  * @return   string  $process
+  *
+  */
+  public function return_device($dt_rental)
+  {
+    // assign variable
+    $device_id   = intval($dt_rental["device_id"]);
+
+    // create query
+    $query   = "DELETE FROM rental WHERE device_id = $device_id";
+
+    // add to database
+    $process = $this->db->query($query);
+
+    // create system log
+    if ($process>0) {
+      $this->sysClass->save_system_log($_SESSION['username'], $query);
+    }
+
+    // create query
+    $queryUpd   = "UPDATE device_list SET device_status = 'keep' WHERE device_id = $device_id";
+
+    // update database
+    $processUpd = $this->db->query($queryUpd);
+
+    // create system log
+    if ($processUpd>0) {
+      $this->sysClass->save_system_log($_SESSION['username'], $queryUpd);
+    }
+
+    return $process;
+  }
 }
 
 ?>
