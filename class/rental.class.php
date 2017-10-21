@@ -32,10 +32,7 @@ class RentalClass
   {
     $query = "SELECT DATE_FORMAT(r.`rental_date`, '%Y-%m-%d') as `rental_date_formatted`, r.*, a.*, 
           b.`type_name`, 
-          c.`location_name`, 
-          d.`place_id`, 
-          d.`building_id`, 
-          d.`floor_id`, 
+          c.`location_name`,
           lp.`place_name`, 
           lb.`building_name`, 
           lf.`floor_name` 

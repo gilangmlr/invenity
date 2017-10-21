@@ -9,6 +9,7 @@ require_once(__DIR__ . '/class/user.class.php');
 require_once(__DIR__ . '/class/inventory.class.php');
 require_once(__DIR__ . '/class/location.class.php');
 require_once(__DIR__ . '/class/device.class.php');
+require_once(__DIR__ . '/class/rental.class.php');
 require('assets/plugins/fpdf181/fpdf.php');
 
 class PDF extends FPDF
@@ -43,13 +44,14 @@ class PDF extends FPDF
         // Table header
         $this->SetFont('Arial','B',9);
         $this->Cell(12, 10, "No", 1, 0);
-        $this->Cell(35, 10, "Code", 1, 0);
-        $this->Cell(30, 10, "Type", 1, 0);
-        $this->Cell(30, 10, "Brand", 1, 0);
-        $this->Cell(28, 10, "Model", 1, 0);
+        $this->Cell(20, 10, "Date", 1, 0);
+        $this->Cell(28, 10, "Name", 1, 0);
+        $this->Cell(28, 10, "Code", 1, 0);
+        $this->Cell(25, 10, "Type", 1, 0);
+        $this->Cell(25, 10, "Brand", 1, 0);
+        $this->Cell(25, 10, "Model", 1, 0);
         $this->Cell(35, 10, "Serial Number", 1, 0);
-        $this->Cell(20, 10, "Color", 1, 0);
-        $this->Cell(75, 10, "Location", 1, 0);
+        $this->Cell(60, 10, "Location", 1, 0);
         $this->Cell(15, 10, "Status", 1, 1);
 
     }
@@ -90,7 +92,11 @@ if (isset($_GET['criteria']) && $_GET['criteria']!='') {
 }
 
 $no = 0;
-$datas = $deviceClass->show_device_report($by, $criteria);
+if ($by === 'rental') {
+    $datas = (new RentalClass())->show_rentals();
+} else {
+    $datas = $deviceClass->show_device_report($by, $criteria);
+}
 foreach ($datas as $data) {
     $no++;
 
@@ -103,13 +109,14 @@ foreach ($datas as $data) {
     }
 
     $pdf->Cell(12, 10, $no, 1, 0);
-    $pdf->Cell(35, 10, $data['device_code'], 1, 0);
-    $pdf->Cell(30, 10, $data['type_name'], 1, 0);
-    $pdf->Cell(30, 10, $data['device_brand'], 1, 0);
-    $pdf->Cell(28, 10, $data['device_model'], 1, 0);
+    $pdf->Cell(20, 10, $data['rental_date_formatted'], 1, 0);
+    $pdf->Cell(28, 10, $data['renter_name'], 1, 0);
+    $pdf->Cell(28, 10, $data['device_code'], 1, 0);
+    $pdf->Cell(25, 10, $data['type_name'], 1, 0);
+    $pdf->Cell(25, 10, $data['device_brand'], 1, 0);
+    $pdf->Cell(25, 10, $data['device_model'], 1, 0);
     $pdf->Cell(35, 10, $data['device_serial'], 1, 0);
-    $pdf->Cell(20, 10, $data['device_color'], 1, 0);
-    $pdf->Cell(75, 10, $locationdetail, 1, 0);
+    $pdf->Cell(60, 10, $locationdetail, 1, 0);
     $pdf->Cell(15, 10, ucfirst($data['device_status']), 1, 1);
 }
 
