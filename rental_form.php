@@ -45,7 +45,7 @@ include("./include/include_header.php");
   }
 
   // Get all devices
-  $dev_list     = $deviceclass->show_all_devices();
+  $dev_list     = $deviceclass->show_all_available_devices();
   $data_num = count($dev_list);
 
   $dev_list_json = json_encode([]);
