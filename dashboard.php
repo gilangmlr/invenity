@@ -67,7 +67,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 
               // Show if exists
               if ($data_num!=0) {
-                $data_table = "<table class='table table-bordered table-striped' id='datatable'><thead><tr><th>Hari / Tanggal</th><th>Nama Peminjam</th><th>Device Code</th><th>Device Type</th><th>Brand</th><th>Model</th><th>Serial</th><th>Location</th></tr></thead><tbody>";
+                $data_table = "<table class='table table-bordered table-striped' id='datatable'><thead><tr><th>Date</th><th>Name</th><th>Device Code</th><th>Device Type</th><th>Brand</th><th>Model</th><th>Serial</th><th>Location</th></tr></thead><tbody>";
                 foreach ($data as $rental_data) {
                   $rental_date = $rental_data["rental_date_formatted"];
                   $renter_name = $rental_data["renter_name"];

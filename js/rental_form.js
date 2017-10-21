@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
     $("#device_code").html('');
     $("button[type=submit]").prop('disabled', false);
     if (devs.length === 0) {
-      $("#device_code").html('<option disabled>No device found</option>');
+      $("#device_code").html('<option disabled>No available device</option>');
       $("button[type=submit]").prop('disabled', true);
     }
     for (var i = 0; i < devs.length; i++) {

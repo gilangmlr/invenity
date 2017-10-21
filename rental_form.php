@@ -67,13 +67,13 @@ include("./include/include_header.php");
                 <legend>Rental Informations</legend>
                 <input type="hidden" name="device_id" id="device_id">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Hari / Tanggal</label>
+                    <label class="control-label col-sm-3">Date</label>
                     <div class="col-sm-9">
                         <input type="text" name="rental_date" id="rental_date">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Nama Peminjam</label>
+                    <label class="control-label col-sm-3">Name</label>
                     <div class="col-sm-9">
                         <input type="text" name="renter_name" id="renter_name" data-validetta="required">
                     </div>
