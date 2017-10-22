@@ -171,7 +171,7 @@ class UserClass
 
 		// Show standard and active components
 		$result = "";
-		$query  = "SELECT component_id, component_name FROM component WHERE component_type = 'standard' AND active = 'yes'";
+		$query  = "SELECT component_id, component_name FROM component WHERE active = 'yes'";
 		$fetch  = $this->db->query($query);
 		
 		if (count($fetch)>0) {
@@ -180,7 +180,7 @@ class UserClass
 				$component_name = $dt_com['component_name'];
 				// If privileges exists
 				if ($current_privileges!="*") {
-					if (strpos($current_privileges, $component_id) !== FALSE) {
+					if (strpos($current_privileges, '' . $component_id) !== FALSE) {
 						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
 					}
 					else {
@@ -530,10 +530,10 @@ class UserClass
 
 				if ($user_privileges!="") {
 					$user_privileges = str_replace(" ", ",", trim($user_privileges));
-					$user_privileges = "5,6,7,".$user_privileges;
+					// $user_privileges = "5,6,7,".$user_privileges;
 				}
 				else {
-					$user_privileges = "5,6,7";
+					// $user_privileges = "5,6,7";
 				}
 
 				// create query privileges
