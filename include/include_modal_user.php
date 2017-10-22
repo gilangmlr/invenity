@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <legend>Additional Privileges</legend>
+                    <legend>Privileges</legend>
                     <div class="form-group">
                         <label class="control-label col-sm-3"> </label>
                         <div class="col-sm-9">

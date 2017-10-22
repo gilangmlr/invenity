@@ -24,7 +24,7 @@ class UserClass
 		$this->sysClass  = new SystemClass();
 	}
 
-
+	public $default_privileges = "5,6,7";
 
 	/**
 	* Sign In
@@ -180,11 +180,15 @@ class UserClass
 				$component_name = $dt_com['component_name'];
 				// If privileges exists
 				if ($current_privileges!="*") {
-					if (strpos($current_privileges, '' . $component_id) !== FALSE) {
-						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
-					}
-					else {
-						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
+					if (strpos($this->default_privileges, '' . $component_id) !== FALSE) {
+						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked='' disabled> <label for='priv_$component_id'>$component_name</label><br>";
+					} else {
+						if (strpos($current_privileges, '' . $component_id) !== FALSE) {
+							$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
+						}
+						else {
+							$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
+						}
 					}
 				}
 				else {
