@@ -24,7 +24,6 @@ class UserClass
 		$this->sysClass  = new SystemClass();
 	}
 
-	public $default_privileges = "5,6,7";
 
 	/**
 	* Sign In
@@ -180,15 +179,11 @@ class UserClass
 				$component_name = $dt_com['component_name'];
 				// If privileges exists
 				if ($current_privileges!="*") {
-					if (strpos($this->inventory->setting_data("default_privileges"), '' . $component_id) !== FALSE) {
-						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked='' disabled> <label for='priv_$component_id'>$component_name</label><br>";
-					} else {
-						if (strpos($current_privileges, '' . $component_id) !== FALSE) {
-							$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
-						}
-						else {
-							$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
-						}
+					if (strpos($current_privileges, '' . $component_id) !== FALSE) {
+						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
+					}
+					else {
+						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
 					}
 				}
 				else {
@@ -224,9 +219,9 @@ class UserClass
 				$component_name = $dt_com['component_name'];
 
 				if (strpos($this->inventory->setting_data("default_privileges"), '' . $component_id) !== FALSE) {
-					$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
+					$result .= "<input type='checkbox' name='default_privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
 				} else {
-					$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
+					$result .= "<input type='checkbox' name='default_privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
 				}
 			}
 		}
@@ -393,21 +388,17 @@ class UserClass
 
 				// check additional privileges
 				$user_privileges = "";
-				$i               = 0;
-				$total           = count($privileges);
 				foreach ($privileges as $privileges) {
-					$i++;
-					if ($i!=$total && $privileges!="") {
+					if ($privileges!="") {
 						$user_privileges .= "$privileges ";
 					}
 				}
-				trim($user_privileges);
+				$user_privileges = trim($user_privileges);
 				if ($user_privileges!="") {
-					str_replace(" ", ",", $user_privileges);
-					// $user_privileges = "5,6,7,8,".$user_privileges;
+					$user_privileges = str_replace(" ", ",", $user_privileges);
 				}
 				else {
-					// $user_privileges = "5,6,7,8";
+					$user_privileges = $this->inventory->setting_data("default_privileges");
 				}
 
 				// create query privileges
@@ -555,28 +546,23 @@ class UserClass
 
 			// check additional privileges
 			if ($privileges!="*") {
-				// 5,6,7 -> standard setting (device [5] and location [6] and report [7])
+				// check additional privileges
 				$user_privileges = "";
-				$i               = 0;
-				$total           = count($privileges);
-				foreach ($privileges as $privilege) {
-					$i++;
-					if ($i<=$total && $privilege!="") {
-						$user_privileges .= "$privilege ";
+				foreach ($privileges as $privileges) {
+					if ($privileges!="") {
+						$user_privileges .= "$privileges ";
 					}
 				}
-
+				$user_privileges = trim($user_privileges);
 				if ($user_privileges!="") {
-					$user_privileges = str_replace(" ", ",", trim($user_privileges));
-					// $user_privileges = "5,6,7,".$user_privileges;
+					$user_privileges = str_replace(" ", ",", $user_privileges);
 				}
 				else {
-					// $user_privileges = "5,6,7";
+					$user_privileges = $this->inventory->setting_data("default_privileges");
 				}
 
 				// create query privileges
 				$query   = "UPDATE user_privileges SET privileges='$user_privileges', updated_by='$_SESSION[username]', updated_date=NOW(), revision=revision+1 WHERE username='$username'";
-
 				// add to database privileges
 				$process = $this->db->query($query);
 

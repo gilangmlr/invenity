@@ -123,6 +123,21 @@ class SystemClass
 
 		// Save post data
 		foreach ($postdata as $setting_name => $setting_value) {
+			if ($setting_name === 'default_privileges') {
+				// check additional privileges
+				$user_privileges = "";
+				foreach ($setting_value as $privileges) {
+					if ($privileges!="") {
+						$user_privileges .= "$privileges ";
+					}
+				}
+				$user_privileges = trim($user_privileges);
+				if ($user_privileges!="") {
+					$user_privileges = str_replace(" ", ",", $user_privileges);
+				}
+
+				$setting_value = $user_privileges;
+			}
 			// Check if new value is the same with old value
 			$old_value = $this->get_single_data("setting_value", "system_settings", " setting_name='$setting_name'");
 
