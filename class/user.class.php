@@ -180,7 +180,7 @@ class UserClass
 				$component_name = $dt_com['component_name'];
 				// If privileges exists
 				if ($current_privileges!="*") {
-					if (strpos($this->default_privileges, '' . $component_id) !== FALSE) {
+					if (strpos($this->inventory->setting_data("default_privileges"), '' . $component_id) !== FALSE) {
 						$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked='' disabled> <label for='priv_$component_id'>$component_name</label><br>";
 					} else {
 						if (strpos($current_privileges, '' . $component_id) !== FALSE) {
@@ -193,6 +193,40 @@ class UserClass
 				}
 				else {
 					$result .= "";
+				}
+			}
+		}
+		else {
+			$result .= "No Additional Privileges.";
+		}
+
+		return $result;
+	}
+
+
+
+	/**
+	* Show Default User Privileges
+	*\
+	* @return 	array 	$result
+	*
+	*/
+	public function default_user_privileges()
+	{
+		// Show active components
+		$result = "";
+		$query  = "SELECT component_id, component_name FROM component WHERE active = 'yes'";
+		$fetch  = $this->db->query($query);
+		
+		if (count($fetch)>0) {
+			foreach ($fetch as $dt_com) {
+				$component_id   = $dt_com['component_id'];
+				$component_name = $dt_com['component_name'];
+
+				if (strpos($this->inventory->setting_data("default_privileges"), '' . $component_id) !== FALSE) {
+					$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id' checked=''> <label for='priv_$component_id'>$component_name</label><br>";
+				} else {
+					$result .= "<input type='checkbox' name='privileges[]' id='priv_$component_id' value='$component_id'> <label for='priv_$component_id'>$component_name</label><br>";
 				}
 			}
 		}
@@ -370,10 +404,10 @@ class UserClass
 				trim($user_privileges);
 				if ($user_privileges!="") {
 					str_replace(" ", ",", $user_privileges);
-					$user_privileges = "5,6,7,8,".$user_privileges;
+					// $user_privileges = "5,6,7,8,".$user_privileges;
 				}
 				else {
-					$user_privileges = "5,6,7,8";
+					// $user_privileges = "5,6,7,8";
 				}
 
 				// create query privileges

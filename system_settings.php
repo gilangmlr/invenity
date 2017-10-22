@@ -137,6 +137,16 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 		    			</div>
 
 		    			<br>
+		    			<legend>Default Privilges</legend>
+						
+						<div class="form-group">
+                <label class="control-label col-sm-3"> </label>
+                <div class="col-sm-9">
+                    <?php echo $userClass->default_user_privileges(); ?>
+                </div>
+            </div>
+
+		    			<br>
 		    			<legend>Display</legend>
 
 		    			<div class="form-group">
