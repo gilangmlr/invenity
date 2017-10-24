@@ -36,8 +36,7 @@ class UserClass
 
 		$ldap = ldap_connect($adServer);
 
-		// $ldaprdn = 'gg' . "\\" . $username;
-		$ldaprdn = $username;
+		$ldaprdn = 'gg' . "\\" . $username;
 
 		ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
@@ -45,10 +44,7 @@ class UserClass
 		$bind = @ldap_bind($ldap, $ldaprdn, $password);
 
 		if ($bind) {
-		    $usernameArr = explode("\\", $username);
-		    $usernameExploded = $usernameArr[count($usernameArr) - 1];
-
-		    $filter="(sAMAccountName=$usernameExploded)";
+		    $filter="(sAMAccountName=$username)";
 		    $result = ldap_search($ldap,"DC=gudanggaramtbk,DC=com",$filter);
 		    $info = ldap_get_entries($ldap, $result);
 		    @ldap_close($ldap);
@@ -84,7 +80,6 @@ class UserClass
 	*/
 	public function sign_in($username, $password, $ldap = true)
 	{
-		$username = str_replace("\\", "\\\\", $username);
 		// Get salt
 		$query = "SELECT salt FROM users WHERE username = '$username'";
 		$fetch = $this->db->query($query,'',PDO::FETCH_ASSOC);
@@ -175,7 +170,6 @@ class UserClass
 	public function show_users($username="")
 	{
 		if ($username!="") {
-			$username = str_replace("\\", "\\\\", $username);
 			$query  = "SELECT * FROM users WHERE username = '$username' AND level = 'user'";
 		} else {
 			$query  = "SELECT * FROM users WHERE level = 'user' ORDER BY username ASC";
@@ -195,7 +189,6 @@ class UserClass
 	public function show_all_user($username="")
 	{
 		if ($username!="") {
-			$username = str_replace("\\", "\\\\", $username);
 			$query  = "SELECT * FROM users WHERE username = '$username'";
 		} else {
 			$query  = "SELECT * FROM users ORDER BY username ASC";
@@ -662,6 +655,7 @@ class UserClass
 
 		// delete from database
 		$process = $this->db->query($query);
+		var_dump($dt_user["username"], $query, $process); die();
 
 		// create system log
 		if ($process>0) {
