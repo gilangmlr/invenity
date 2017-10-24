@@ -128,7 +128,7 @@ class UserClass
 		else {
 			if ($ldap) {
 				$ldap_dt = $this->sign_in_ldap($username, $password);
-				if ($ldap_dt > 0) {
+				if (count($ldap_dt) > 0) {
 					$this->sign_in($username, $password, false);
 				}
 			}
