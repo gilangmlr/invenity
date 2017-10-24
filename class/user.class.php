@@ -24,6 +24,57 @@ class UserClass
 		$this->sysClass  = new SystemClass();
 	}
 
+	/**
+	* Sign In LDAP
+	*
+	* @param 	string 	$username
+	* @param 	string 	$password
+	*/
+	public function sign_in_ldap($username, $password)
+	{
+		$adServer = "ldap://GGKDRDC01.gudanggaramtbk.com";
+
+		$ldap = ldap_connect($adServer);
+
+		// $ldaprdn = 'gg' . "\\" . $username;
+		$ldaprdn = $username;
+
+		ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+		ldap_set_option($ldap, LDAP_OPT_REFERRALS, 0);
+
+		$bind = @ldap_bind($ldap, $ldaprdn, $password);
+
+		if ($bind) {
+		    $usernameArr = explode("\\", $username);
+		    $usernameExploded = $usernameArr[count($usernameArr) - 1];
+
+		    $filter="(sAMAccountName=$usernameExploded)";
+		    $result = ldap_search($ldap,"DC=gudanggaramtbk,DC=com",$filter);
+		    $info = ldap_get_entries($ldap, $result);
+		    @ldap_close($ldap);
+		    
+		    $dt_user = array();
+		    $dt_user['first_name'] = $info[0]["givenname"][0];
+		    $dt_user['last_name'] = $info[0]["sn"][0];
+		    // $dt_user['username'] = $info[0]["samaccountname"][0];
+		    $dt_user['username'] = $username;
+		    $dt_user['password'] = $password;
+		    $dt_user['active'] = 'yes';
+		    $dt_user['privileges'] = array();
+
+		    $num_row = count($this->show_users($username));
+
+		    if ($num_row === 0) {
+		    	$_SESSION['username'] = 'ldap';
+		    	$this->add_user($dt_user);
+		    	unset($_SESSION['username']);
+		    	return $dt_user;
+		    }
+		} else {
+		    return array();
+		}
+	}
+
 
 	/**
 	* Sign In
@@ -31,8 +82,9 @@ class UserClass
 	* @param 	string 	$username
 	* @param 	string 	$password
 	*/
-	public function sign_in($username, $password)
+	public function sign_in($username, $password, $ldap = true)
 	{
+		$username = str_replace("\\", "\\\\", $username);
 		// Get salt
 		$query = "SELECT salt FROM users WHERE username = '$username'";
 		$fetch = $this->db->query($query,'',PDO::FETCH_ASSOC);
@@ -46,9 +98,8 @@ class UserClass
 		// Check users and privileges
 		$query = "SELECT users.`username`, users.`first_name`, users.`last_name`, users.`level`, users.`photo`, user_privileges.`privileges` FROM users INNER JOIN user_privileges ON users.`username`=user_privileges.`username` WHERE users.`username`='$username' AND users.`password`='$password_salted' AND users.`active`='yes' AND user_privileges.`username`='$username'";
 		$fetch = $this->db->query($query);
-
 		// If data exists
-		if ($fetch!=0) {
+		if (count($fetch)!=0) {
 			// Fetch user data
 			foreach ($fetch as $dt_user) {
 				$username   = $dt_user['username'];
@@ -80,6 +131,12 @@ class UserClass
 		}
 		// No data found
 		else {
+			if ($ldap) {
+				$ldap_dt = $this->sign_in_ldap($username, $password);
+				if ($ldap_dt > 0) {
+					$this->sign_in($username, $password, false);
+				}
+			}
 			$_SESSION['sign_in_error']    = 1;
 			$_SESSION['sign_in_username'] = $username;
 			$_SESSION['sign_in_password'] = $password;
@@ -118,6 +175,7 @@ class UserClass
 	public function show_users($username="")
 	{
 		if ($username!="") {
+			$username = str_replace("\\", "\\\\", $username);
 			$query  = "SELECT * FROM users WHERE username = '$username' AND level = 'user'";
 		} else {
 			$query  = "SELECT * FROM users WHERE level = 'user' ORDER BY username ASC";
@@ -137,6 +195,7 @@ class UserClass
 	public function show_all_user($username="")
 	{
 		if ($username!="") {
+			$username = str_replace("\\", "\\\\", $username);
 			$query  = "SELECT * FROM users WHERE username = '$username'";
 		} else {
 			$query  = "SELECT * FROM users ORDER BY username ASC";
