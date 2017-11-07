@@ -82,7 +82,7 @@ class LoanClass
     }
 
     // create query
-    $queryUpd   = "UPDATE device_list SET device_status = 'in use' WHERE device_id = $device_id";
+    $queryUpd   = "UPDATE device_list SET device_status = 'In User' WHERE device_id = $device_id";
 
     // update database
     $processUpd = $this->db->query($queryUpd);

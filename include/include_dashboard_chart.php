@@ -3,11 +3,11 @@
 
 // Get all device data
 $device_datas_all       = $devClass->show_device();
-$device_datas_new       = $devClass->show_device("", "new");
-$device_datas_in_use    = $devClass->show_device("", "in use");
-$device_datas_damaged   = $devClass->show_device("", "damaged");
-$device_datas_repaired  = $devClass->show_device("", "repaired");
-$device_datas_keep = $devClass->show_device("", "keep in it");
+$device_datas_new       = $devClass->show_device("", "New");
+$device_datas_in_use    = $devClass->show_device("", "In User");
+$device_datas_damaged   = $devClass->show_device("", "Damaged");
+$device_datas_repaired  = $devClass->show_device("", "Repaired");
+$device_datas_keep = $devClass->show_device("", "Keep In IT");
 
 // Loop device data all
 $all_total = 0;

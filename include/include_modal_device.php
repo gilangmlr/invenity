@@ -145,11 +145,11 @@
                         <div class="col-sm-6">
                             <select class="form-control chosen-select" name="dev_status" id="dev_status" data-placeholder="Status">
                                 <option value=""></option>
-                                <option value="new" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="new") {echo "selected";} ?>>New</option>
-                                <option value="in use" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="in use") {echo "selected";} ?>>In Use</option>
-                                <option value="damaged" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="damaged") {echo "selected";} ?>>Damaged</option>
-                                <option value="repaired" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="repaired") {echo "selected";} ?>>Repaired</option>
-                                <option value="keep in it" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="keep in it") {echo "selected";} ?>>Keep in IT</option>
+                                <option value="New" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="New") {echo "selected";} ?>>New</option>
+                                <option value="In User" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="In User") {echo "selected";} ?>>In User</option>
+                                <option value="Damaged" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="Damaged") {echo "selected";} ?>>Damaged</option>
+                                <option value="Repaired" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="Repaired") {echo "selected";} ?>>Repaired</option>
+                                <option value="Keep In IT" <?php if(isset($_SESSION['new_dev_status']) && $_SESSION['new_dev_status']=="Keep In IT") {echo "selected";} ?>>Keep In IT</option>
                             </select> 
                             <?php unset($_SESSION['new_dev_status']); ?>
                         </div>
