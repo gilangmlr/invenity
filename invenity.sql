@@ -70,27 +70,7 @@ CREATE TABLE `device_changes` (
 -- Dumping data for table `device_changes`
 --
 
-INSERT INTO `device_changes` (`changes_id`, `device_id`, `changes`, `updated_by`, `updated_date`) VALUES
-(000000000001, 4, 'Dev status :  -> keep. ', 'admin', '2017-11-02 10:54:43'),
-(000000000002, 4, 'Dev status :  -> keep. ', 'admin', '2017-11-02 10:55:55'),
-(000000000003, 4, 'Dev status :  -> in use. ', 'admin', '2017-11-02 10:56:03'),
-(000000000004, 4, '', 'admin', '2017-11-02 10:58:21'),
-(000000000005, 4, 'Dev status : in use -> keep in it. ', 'admin', '2017-11-02 12:39:30'),
-(000000000006, 4, 'Dev status :  -> keep in it. ', 'admin', '2017-11-02 15:46:51'),
-(000000000007, 4, 'Dev status :  -> keep in it. ', 'admin', '2017-11-02 16:58:22'),
-(000000000008, 5, 'Dev serial : REQ000000000141 -> Z3C7-205AE-0646. Dev status : Keep In IT -> . ', 'admin', '2017-11-06 09:51:13'),
-(000000000009, 5, 'Dev status :  -> keep in it. ', 'admin', '2017-11-06 09:51:28'),
-(000000000010, 7, 'Dev status : Keep In IT -> . ', 'admin', '2017-11-06 09:56:25'),
-(000000000011, 7, 'Dev serial : DTIG3/4GB -> DTIG3. Dev status :  -> keep in it. ', 'admin', '2017-11-06 09:56:56'),
-(000000000012, 4, 'Dev status :  -> in use. ', 'admin', '2017-11-06 10:04:03'),
-(000000000013, 4, 'Dev status :  -> in use. ', 'admin', '2017-11-06 10:23:10'),
-(000000000014, 4, 'Dev status :  -> damaged. ', 'admin', '2017-11-06 10:24:35'),
-(000000000015, 4, 'Dev status : Damaged -> in use. ', 'admin', '2017-11-06 11:20:16'),
-(000000000016, 4, 'Dev status :  -> damaged. ', 'admin', '2017-11-06 11:21:26'),
-(000000000017, 4, 'Dev status : Damaged -> repaired. ', 'admin', '2017-11-06 11:21:42'),
-(000000000018, 4, 'Dev status : Repaired -> new. ', 'admin', '2017-11-06 11:21:55'),
-(000000000019, 4, 'Dev status : New -> in use. ', 'admin', '2017-11-06 11:22:13'),
-(000000000020, 4, 'Dev status :  -> damaged. ', 'admin', '2017-11-06 11:26:18');
+
 
 -- --------------------------------------------------------
 
@@ -178,9 +158,7 @@ CREATE TABLE `loan` (
 -- Dumping data for table `loan`
 --
 
-INSERT INTO `loan` (`username`, `loan_date`, `device_id`, `loan_name`, `created_date`, `updated_date`, `dept`, `necessary`, `return_date`) VALUES
-('admin', '2017-11-06 00:00:00', 4, 'Bondan', '2017-11-06 10:01:23', '2017-11-06 10:01:23', 'IT', 'Back Up Data', '2017-11-06 10:01:23'),
-('admin', '2017-11-06 00:00:00', 7, 'Test In Use', '2017-11-06 11:26:58', '2017-11-06 11:26:58', 'Test Dept', 'asdasd', '2017-11-06 11:26:58');
+
 
 -- --------------------------------------------------------
 
@@ -329,38 +307,7 @@ CREATE TABLE `system_logs` (
 -- Dumping data for table `system_logs`
 --
 
-INSERT INTO `system_logs` (`log_id`, `log_date`, `username`, `description`) VALUES
-(50, '2017-11-03 08:47:07', 'admin', 'admin update data :  \r\n					place_name = ''Waru'', \r\n					active = ''yes'', \r\n					updated_by = ''admin'', \r\n					updated_date = NOW(), \r\n					revision = revision+1 \r\n					 where  place_id = ''1''  from location_place table on 2017/11/03 08:47:07'),
-(51, '2017-11-03 08:47:16', 'admin', 'admin update data :  \r\n					location_name = ''Storage 1'', \r\n					active = ''yes'', \r\n					updated_by = ''admin'', \r\n					updated_date = NOW(), \r\n					revision = revision+1 \r\n					 where  location_id = ''2''  from location table on 2017/11/03 08:47:16'),
-(52, '2017-11-03 08:47:16', 'admin', 'admin update data :  \r\n							place_id = ''1'', \r\n							building_id = ''2'', \r\n							floor_id = ''1'',\r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1  where  detail_id = ''2'' from location_details table on 2017/11/03 08:47:16'),
-(53, '2017-11-06 09:42:52', 'admin', 'admin update data :  setting_value=''1,3,4,5,6,7,8'' where  setting_name=''default_privileges'' from system_settings table on 2017/11/06 09:42:52'),
-(54, '2017-11-06 09:43:59', 'admin', 'admin insert new data into the device_type table on 2017/11/06 09:43:59'),
-(55, '2017-11-06 09:45:39', 'admin', 'admin insert new data into the device_list table on 2017/11/06 09:45:39'),
-(56, '2017-11-06 09:46:31', 'admin', 'admin insert new data into the device_list table on 2017/11/06 09:46:31'),
-(57, '2017-11-06 09:48:28', 'admin', 'admin insert new data into the device_list table on 2017/11/06 09:48:28'),
-(58, '2017-11-06 09:51:13', 'admin', 'admin update data :  \r\n							device_brand = ''ATEN Desktop'', \r\n							device_model = ''ATEN CS84U'', \r\n							device_color = ''Grey'', \r\n							device_serial = ''Z3C7-205AE-0646'', \r\n							device_description = ''<p>Dekstop Swith for Provisioning</p>'', \r\n							device_photo = ''./assets/images/device_photos/Z3C7-205AE-0646.jpg'',   \r\n							device_status = '''', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''5''  from device_list table on 2017/11/06 09:51:13'),
-(59, '2017-11-06 09:51:28', 'admin', 'admin update data :  \r\n							device_brand = ''ATEN Desktop'', \r\n							device_model = ''ATEN CS84U'', \r\n							device_color = ''Grey'', \r\n							device_serial = ''Z3C7-205AE-0646'', \r\n							device_description = ''<p>Dekstop Swith for Provisioning</p>'', \r\n							  \r\n							device_status = ''keep in it'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''5''  from device_list table on 2017/11/06 09:51:28'),
-(60, '2017-11-06 09:56:16', 'ldap', 'ldap insert new data into the users table on 2017/11/06 09:56:16'),
-(61, '2017-11-06 09:56:17', 'ldap', 'ldap insert new data into the user_privileges table on 2017/11/06 09:56:17'),
-(62, '2017-11-06 09:56:26', 'admin', 'admin update data :  \r\n							device_brand = ''Flash Drive Data Traveller'', \r\n							device_model = ''KingSton'', \r\n							device_color = ''Black'', \r\n							device_serial = ''DTIG3/4GB'', \r\n							device_description = ''<p>USB Flash Drive KingSton Data Traveller</p>'', \r\n							device_photo = ''./assets/images/device_photos/DTIG3/4GB.jpg'',   \r\n							device_status = '''', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''7''  from device_list table on 2017/11/06 09:56:26'),
-(63, '2017-11-06 09:56:56', 'admin', 'admin update data :  \r\n							device_brand = ''Flash Drive Data Traveller'', \r\n							device_model = ''KingSton'', \r\n							device_color = ''Black'', \r\n							device_serial = ''DTIG3'', \r\n							device_description = ''<p>USB Flash Drive KingSton Data Traveller</p>'', \r\n							device_photo = ''./assets/images/device_photos/DTIG3.jpg'',   \r\n							device_status = ''keep in it'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''7''  from device_list table on 2017/11/06 09:56:56'),
-(64, '2017-11-06 10:00:53', 'ksoleh', 'ksoleh insert new data into the loan table on 2017/11/06 10:00:53'),
-(65, '2017-11-06 10:00:53', 'ksoleh', 'ksoleh update data :  device_status = ''in use''  where  device_id = 7 from device_list table on 2017/11/06 10:00:53'),
-(66, '2017-11-06 10:01:23', 'admin', 'admin insert new data into the loan table on 2017/11/06 10:01:23'),
-(67, '2017-11-06 10:01:23', 'admin', 'admin update data :  device_status = ''in use''  where  device_id = 4 from device_list table on 2017/11/06 10:01:23'),
-(68, '2017-11-06 10:04:03', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''in use'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 10:04:03'),
-(69, '2017-11-06 10:23:10', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''in use'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 10:23:10'),
-(70, '2017-11-06 10:24:35', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''damaged'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 10:24:35'),
-(71, '2017-11-06 10:36:41', 'ldap', 'ldap insert new data into the users table on 2017/11/06 10:36:41'),
-(72, '2017-11-06 10:36:42', 'ldap', 'ldap insert new data into the user_privileges table on 2017/11/06 10:36:42'),
-(73, '2017-11-06 11:20:17', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''in use'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:20:17'),
-(74, '2017-11-06 11:21:26', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''damaged'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:21:26'),
-(75, '2017-11-06 11:21:42', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''repaired'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:21:42'),
-(76, '2017-11-06 11:21:55', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''new'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:21:55'),
-(77, '2017-11-06 11:22:13', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''in use'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:22:13'),
-(78, '2017-11-06 11:26:18', 'admin', 'admin update data :  \r\n							device_brand = ''Western Digital'', \r\n							device_model = ''My Passport'', \r\n							device_color = ''Black'', \r\n							device_serial = ''WDBBEP0010BBK'', \r\n							device_description = ''<p>Hardisk Eksternal IT Support Specialist Surabaya</p>'', \r\n							  \r\n							device_status = ''damaged'', \r\n							location_id = ''1'', \r\n							device_deployment_date = NOW(), \r\n							updated_by = ''admin'', \r\n							updated_date = NOW(), \r\n							revision = revision+1 \r\n							 where  device_id = ''4''  from device_list table on 2017/11/06 11:26:18'),
-(79, '2017-11-06 11:26:58', 'admin', 'admin insert new data into the loan table on 2017/11/06 11:26:58'),
-(80, '2017-11-06 13:48:16', 'admin', 'admin update data :  setting_value=''5,6,7,8'' where  setting_name=''default_privileges'' from system_settings table on 2017/11/06 13:48:16');
+
 
 -- --------------------------------------------------------
 

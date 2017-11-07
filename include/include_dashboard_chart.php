@@ -51,7 +51,7 @@ foreach ($device_datas_keep as $ddds) {
 <script type="text/javascript" src="./assets/plugins/chartjs/Chart.min.js"></script>
 <script type="text/javascript">
 	var barChartData = {
-		labels : [ "All Device", "New Device", "In Use Device", "Damaged Device", "Repaired Device", "Keep in IT Device" ],
+		labels : [ "All Devices", "New Devices", "In User Devices", "Damaged Devices", "Repaired Devices", "Keep In IT Devices" ],
 		datasets : [
 			{
 				fillColor: "rgba(151,187,205,0.5)",
