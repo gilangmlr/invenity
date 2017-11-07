@@ -51,6 +51,16 @@ class PDF extends FPDF
         // Line break
         $this->Ln(10);
 
+        $this->SetFont('Times','',8);
+        $this->Cell(14, 5, "Printed by: ", 0, 0);
+        $this->Cell(24, 5, trippleDot($_SESSION['username'], 28), 0, 0);
+        $this->Ln(5);
+        $this->Cell(16, 5, "Created date: ", 0, 0);
+        $this->Cell(20, 5, date('Y-m-d'), 0, 0);
+        // Line break
+        $this->Ln(10);
+
+
         // Table header
         $this->SetFont('Arial','B',9);
         $this->Cell(12, 10, "No", 1, 0);
