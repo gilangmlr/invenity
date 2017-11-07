@@ -79,15 +79,15 @@ $setting_location_details = $invClass->setting_data("location_details");
 						<table class='table table-bordered table-striped' id='datatable'>
 						<thead>
 							<tr>
-								<th>Name (Room)</th>
+								<th><center>Name (Room)</center></th>
 								<!--<th>Photo</th>-->
 								<?php if ($setting_location_details=="enable"): ?>
-								<th>Place</th>
-								<th>Building</th>
-								<th>Floor</th>
+								<th><center>Place</center></th>
+								<th><center>Building</center></th>
+								<th><center>Floor</center></th>
 								<?php endif ?>
-								<th>Active</th>
-								<th>Actions</th>
+								<th><center>Active</center></th>
+								<th><center>Actions</center></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -141,9 +141,9 @@ $setting_location_details = $invClass->setting_data("location_details");
 						<table class='table table-bordered table-striped datatables' width="100%">
 						<thead>
 							<tr>
-								<th>Place Name</th>
-								<th>Active</th>
-								<th>Actions</th>
+								<th><center>Place Name</center></th>
+								<th><center>Active</center></th>
+								<th><center>Actions</center></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -155,7 +155,7 @@ $setting_location_details = $invClass->setting_data("location_details");
 							$active     = $place_data["active"];
 							
 							if ($active=="yes") {
-								$active_status = "<span class='label label-success'>Yes</span><input type='hidden' id='place_active_$place_id' value='yes'>";
+								$active_status = "<span class='label label-success'>Yes</span><input type='hidden' id='place_active_$place_id' value='yes' text align='center'>";
 								$button_status = "<button type='button' title='Deactive' class='btn btn-danger btn-sm' onclick=\"location_detail_change_status('place', '$place_id', '$place_name', 'no')\"><i class='glyphicon glyphicon-remove'></i></button>";
 							}
 							elseif ($active=="no") {

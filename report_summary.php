@@ -9,7 +9,7 @@ require_once(__DIR__ . '/class/user.class.php');
 require_once(__DIR__ . '/class/inventory.class.php');
 require_once(__DIR__ . '/class/location.class.php');
 require_once(__DIR__ . '/class/device.class.php');
-require_once(__DIR__ . '/class/rental.class.php');
+require_once(__DIR__ . '/class/loan.class.php');
 require('assets/plugins/fpdf181/fpdf.php');
 
 class PDF extends FPDF
@@ -92,8 +92,8 @@ if (isset($_GET['criteria']) && $_GET['criteria']!='') {
 }
 
 $no = 0;
-if ($by === 'rental') {
-    $datas = (new RentalClass())->show_rentals();
+if ($by === 'loan') {
+    $datas = (new LoanClass())->show_loans();
 } else {
     $datas = $deviceClass->show_device_report($by, $criteria);
 }
@@ -109,8 +109,8 @@ foreach ($datas as $data) {
     }
 
     $pdf->Cell(12, 10, $no, 1, 0);
-    $pdf->Cell(20, 10, $data['rental_date_formatted'], 1, 0);
-    $pdf->Cell(28, 10, $data['renter_name'], 1, 0);
+    $pdf->Cell(20, 10, $data['loan_date_formatted'], 1, 0);
+    $pdf->Cell(28, 10, $data['loan_name'], 1, 0);
     $pdf->Cell(28, 10, $data['device_code'], 1, 0);
     $pdf->Cell(25, 10, $data['type_name'], 1, 0);
     $pdf->Cell(25, 10, $data['device_brand'], 1, 0);

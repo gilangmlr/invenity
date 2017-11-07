@@ -212,12 +212,12 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 								</div>
 							</div>
 						</div>
-						<!-- Rental -->
+						<!-- loan -->
 						<div class="col-md-6">
 							<div class="panel panel-default">
-								<div class="panel-heading"><i class="glyphicon glyphicon-book"></i> Rental Report</div>
+								<div class="panel-heading"><i class="glyphicon glyphicon-book"></i> Loan Report</div>
 								<div class="panel-body">
-									<a href="report_summary.php?by=rental&name=rental" target="_blank" class="btn btn-large btn-block btn-primary">Complete Summary Report</a>
+									<a href="report_summary.php?by=loan&name=loan" target="_blank" class="btn btn-large btn-block btn-primary">Complete Summary Report</a>
 								</div>
 							</div>
 						</div>

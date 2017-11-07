@@ -3,8 +3,6 @@
 * Device Class
 * Device management class such as device, device type
 *
-* @author 		Noerman Agustiyan
-* @version 		0.2
 */
 
 require_once(__DIR__ . '/../lib/db.class.php');

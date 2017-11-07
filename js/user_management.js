@@ -1,8 +1,5 @@
 /**
 *	User Management js
-*	
-*	@author 	Noerman Agustiyan
-* 	@version 	0.1
 */
 jQuery(document).ready(function($) {
 

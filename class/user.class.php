@@ -32,7 +32,7 @@ class UserClass
 	*/
 	public function sign_in_ldap($username, $password)
 	{
-		$adServer = "ldap://GGKDRDC01.gudanggaramtbk.com";
+		$adServer = "GGKDRDC01.gudanggaramtbk.com";
 
 		$ldap = ldap_connect($adServer);
 
@@ -128,7 +128,7 @@ class UserClass
 		else {
 			if ($ldap) {
 				$ldap_dt = $this->sign_in_ldap($username, $password);
-				if (count($ldap_dt) > 0) {
+				if ($ldap_dt > 0) {
 					$this->sign_in($username, $password, false);
 				}
 			}

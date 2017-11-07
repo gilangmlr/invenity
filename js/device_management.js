@@ -1,8 +1,5 @@
 /**
 *	Device Management js
-*	
-*	@author 	Noerman Agustiyan
-* 	@version 	0.2
 */
 jQuery(document).ready(function($) {
 

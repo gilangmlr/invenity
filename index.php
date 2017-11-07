@@ -25,13 +25,14 @@ else {
 		</title>
 		<!-- Styling -->
 		<link rel="icon" href="./assets/images/favicon.ico">
-		<link rel="stylesheet" type="text/css" href="./assets/css/<?php if ($invClass->setting_data("color_scheme")!="") { echo $invClass->setting_data("color_scheme"); } else {echo "site-default.min.css";} ?>">
-		<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">
+		<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-new.min.css">
+        		<link rel="stylesheet" type="text/css" href="./assets/css/jquery-ui-1.12.1.min.css"> 
+<!--		<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">-->
 	</head>
-	<body background="./assets/images/backgrounds/<?php if ($invClass->setting_data("body_background")!="") { echo $invClass->setting_data("body_background"); } else {echo "symphony.png";} ?>">
+<!--	<body background="./assets/images/backgrounds/<?php if ($invClass->setting_data("body_background")!="") { echo $invClass->setting_data("body_background"); } else {echo "symphony.png";} ?>"> -->
 		<div class="docs-header">
 			<!--nav-->
-			<nav class="navbar navbar-default navbar-custom" role="navigation">
+			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,9 +41,11 @@ else {
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">
-							<img src="assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" height="40">
-						</a>
+						<p><a class="navbar-brand" href="#">
+						  <img src="assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" width="250" height="60">
+					    </a>
+					  </p>
+					  <p>&nbsp;</p>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
@@ -92,7 +95,6 @@ else {
 								<div class="form-group">
 									<input type="hidden" name="action" value="sign_in">
 									<button type="submit" id="sign_in_initiate" class="btn btn-primary"><i class="glyphicon glyphicon-log-in"></i> Sign In</button> 
-									<span class="pull-right">Forgot your account?</span>
 								</div>
 							</form>
 							
@@ -111,14 +113,16 @@ else {
 	    <div class="container document">
 	    	<div class="row">
 		    	<div class="col-md-12 well">
-		    		<div style="margin-top: 30px;"></div>
 			    		<div class="col-md-6">
-			    			<h4>About</h4>
+			    			<h4><strong>About</strong></h4>
 			    			<?php echo $invClass->setting_data("inventory_description"); ?>
 			    		</div>
 			    		<div class="col-md-6">
-			    			<h4>Location</h4>
-		    				<?php echo $invClass->setting_data("inventory_location"); ?>
+			    			<h4><strong>Location</strong></h4>
+                            
+		    				<p><i class="glyphicon glyphicon-map-marker"></i> &nbsp; 
+                            
+                            Address : Jl. Letjen Sutojo No. 55. Waru, Sidoarjo</p>
 			    			<p>
 			    				<i class="glyphicon glyphicon-phone-alt"></i> &nbsp; 
 			    				Phone : <?php if ($invClass->setting_data("inventory_phone_number")!="") { echo $invClass->setting_data("inventory_phone_number"); } else {echo "-";} ?>

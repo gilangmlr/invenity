@@ -3,8 +3,6 @@
 * System_settings Class
 * All inventory system needs
 *
-* @author 		Noerman Agustiyan
-* @version 		0.1
 *
 */
 

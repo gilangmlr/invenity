@@ -60,14 +60,14 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
     				<form name="form_settings" action="" method="post" enctype="multipart/form-data" class="form-horizontal">
     					<legend>General</legend>
 		    			<div class="form-group">
-		    				<label for="inventory_name" class="control-label col-sm-3">Inventory Name</label>
+		    				<label for="inventory_name" class="control-label col-sm-3">Title</label>
 		    				<div class="col-sm-9">
 			    				<input type="text" name="inventory_name" id="inventory_name" class="form-control" value="<?php echo $invClass->setting_data("inventory_name"); ?>">
 		    				</div>
 		    			</div>
 
 		    			<div class="form-group">
-		    				<label for="inventory_slogan" class="control-label col-sm-3">Inventory Slogan</label>
+		    				<label for="inventory_slogan" class="control-label col-sm-3">Purpose</label>
 		    				<div class="col-sm-9">
 			    				<input type="text" name="inventory_slogan" id="inventory_slogan" class="form-control" value="<?php echo $invClass->setting_data("inventory_slogan"); ?>">
 		    				</div>
@@ -147,14 +147,14 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
             </div>
 
 		    			<br>
-		    			<legend>Display</legend>
+		    			<legend>Logo</legend>
 
 		    			<div class="form-group">
 		    				<?php 
 		    					// Current Color Scheme
 		    					$current_color_scheme = $invClass->setting_data("color_scheme");
 		    				?>
-		    				<label class="control-label col-sm-3">Color Scheme</label>
+<!--		    				<label class="control-label col-sm-3">Color Scheme</label>
 		    				<div class="col-sm-9">
 		    					<div class="row">
 		    						<div class="col-sm-4">
@@ -234,11 +234,11 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 			    				<input type="hidden" name="body_background" id="body_background" value="<?php echo $invClass->setting_data("body_background"); ?>">
 		    					</div>
 		    				</div>
-		    			</div>
+		    			</div> 
 
-		    			<hr class="dashed" />
+		    			<hr class="dashed" />-->
 
-		    			<div class="form-group">
+	    			  <div class="form-group">
 		    				<label for="inventory_logo" class="control-label col-sm-3">Logo</label>
 		    				<div class="col-sm-9">
 			    				Current Logo : <img src="./assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" height="50">
@@ -249,12 +249,10 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 			                    </div>
 		                        <span class="help-block">Leave this field empty if you don't want to change your icon. (PNG Only!)</span>
 			    			</div>
-		    			</div>
-
-		    			<hr class="dashed" />
-
+		    			</div></div>
+                        
 		    			<br>
-		    			<legend>Addon</legend>
+		    			<legend>Add Ons</legend>
 
 						<?php 
 							// Current location detail setting

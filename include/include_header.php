@@ -35,47 +35,50 @@
 				} ?>
 			</title>
 			<!-- Styling -->
-			<link rel="stylesheet" type="text/css" href="./assets/css/<?php if ($invClass->setting_data("color_scheme")!="") { echo $invClass->setting_data("color_scheme"); } else {echo "site-default.min.css";} ?>">
-			<!-- <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css"> -->
-			<link rel="stylesheet" type="text/css" href="./assets/css/jquery-ui-1.12.1.min.css">
-			<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">
-			<link rel="icon" href="./assets/images/favicon.ico">
-		</head>
-		<body background="./assets/images/backgrounds/<?php if ($invClass->setting_data("body_background")!="") { echo $invClass->setting_data("body_background"); } else {echo "symphony.png";} ?>">
-			<div class="docs-header">
-				<!--nav-->
-				<nav class="navbar navbar-default navbar-custom" role="navigation">
-					<div class="container">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#">
-								<img src="./assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" height="40">
-							</a>
-						</div>
-						<div class="collapse navbar-collapse">
-							<ul class="nav navbar-nav navbar-right">
-								<li><a class="nav-link current" href="dashboard.php" >Home</a></li>
-							</ul>
-						</div>
+		<link rel="icon" href="./assets/images/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-new.min.css"> 
+        <link rel="stylesheet" href="./datepicker/css/bootstrap-datepicker3.css">
+		<link rel="stylesheet" type="text/css" href="./assets/css/jquery-ui-1.12.1.min.css">
+<!--		<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">-->
+	</head>
+<!--	<body background="./assets/images/backgrounds/<?php if ($invClass->setting_data("body_background")!="") { echo $invClass->setting_data("body_background"); } else {echo "symphony.png";} ?>"> -->
+		<div class="docs-header">
+			<!--nav-->
+			<nav class="navbar navbar-default navbar-custom" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>
+						<p><a class="navbar-brand" href="#">
+						  <img src="assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" width="250" height="60">
+					    </a>
+					  </p>
+					  <p>&nbsp;</p>
 					</div>
-				</nav>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<!-- <li><a class="nav-link current" href="#">Home</a></li>
+							<li><a class="nav-link" href="#">About</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</nav>
 			</div>
 
 			<div class="container document">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h3 class="text-center">
+						<h3 class="text-left">
 							<?php 
 							if ($invClass->setting_data("inventory_name")!="") { 
 								echo $invClass->setting_data("inventory_name"); 
 							} else {
 								echo "Inventory System";
-							} ?>  Administration
+							} ?>
 						</h3>
 					</div>
 				</div>

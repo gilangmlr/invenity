@@ -3,8 +3,6 @@
 * Inventory Class
 * All inventory system needs
 *
-* @author 		Noerman Agustiyan
-* @version 		0.1
 */
 
 require_once(__DIR__ . '/../lib/db.class.php');

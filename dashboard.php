@@ -12,8 +12,8 @@ require_once(__DIR__ . '/class/inventory.class.php');
 $invClass  = new Inventory();
 require_once(__DIR__ . '/class/device.class.php');
 $devClass  = new DeviceClass();
-require_once(__DIR__ . '/class/rental.class.php');
-$rentClass  = new RentalClass();
+require_once(__DIR__ . '/class/loan.class.php');
+$rentClass  = new LoanClass();
 
 // Location details settings 
 $setting_location_details = $invClass->setting_data("location_details");
@@ -45,11 +45,11 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 		?>
     	<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
         <?php 
-        if (isset($_SESSION['rental_status']) && $_SESSION['rental_status']!=""){
+        if (isset($_SESSION['loan_status']) && $_SESSION['loan_status']!=""){
           // show info
-          echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[rental_status]</div>";
+          echo "<div class='alert alert-info alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>$_SESSION[loan_status]</div>";
           // clear save_status session value
-          $_SESSION["rental_status"] = "";
+          $_SESSION["loan_status"] = "";
         }
 
         if (isset($_SESSION['return_status']) && $_SESSION['return_status']!=""){
@@ -70,45 +70,61 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 					</div>
     			</div>
     		</div>
+            <!-- Table Loan Status -->
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Rental Status</h3>
+            <h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Loan Status</h3>
             <br>
           </div>
           <div class="panel-body">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <?php
-              $rentclass = new RentalClass();
+              $rentclass = new LoanClass();
 
-              $data     = $rentclass->show_rentals();
+              $data     = $rentclass->show_loans();
               $data_num = count($data);
 
               // Show if exists
               if ($data_num!=0) {
-                $data_table = "<table class='table table-bordered table-striped' id='datatable'><thead><tr><th>Date</th><th>Name</th><th>Device Code</th><th>Device Type</th><th>Brand</th><th>Location</th><th>Actions</th></tr></thead><tbody>";
-                foreach ($data as $rental_data) {
-                  $device_id              = $rental_data["device_id"];
-                  $rental_date            = $rental_data["rental_date_formatted"];
-                  $renter_name            = $rental_data["renter_name"];
-                  $device_code            = $rental_data["device_code"];
-                  $device_type            = $rental_data["type_name"];
-                  $device_brand           = $rental_data["device_brand"];
-                  $device_model           = $rental_data["device_model"];
-                  $device_serial          = stripslashes($rental_data["device_serial"]);
-                  $device_color           = stripslashes($rental_data["device_color"]);
-                  $location_name          = $rental_data["location_name"];
-                  $device_description     = $rental_data["device_description"];
-                  $device_photo           = $rental_data["device_photo"];
-                  $device_photo_break     = explode(".", strrev($rental_data["device_photo"]), 2);
+                $data_table = "<table class='table table-bordered table-striped' id='datatable'>
+				<thead>
+					<tr>
+						<th><center>Date</center></th>
+						<th><center>Name</center></th>
+						<th><center>Department</center></th>
+						<th><center>Device Type</center></th>
+						<th><center>Necessary</center></th>
+						<th><center>Return Loan</center></th>
+						<th><center>Details</center></th>
+					</tr>
+						</thead>
+						<tbody>";
+                foreach ($data as $loan_data) {
+                  $device_id              = $loan_data["device_id"];
+                  $loan_date            = $loan_data["loan_date_formatted"];
+                  $loan_name            = $loan_data["loan_name"];
+				  $dept					= $loan_data["dept"];
+				  $necessary			= $loan_data["necessary"];
+				  $return_date			= $loan_data["return_date"];
+                  $device_code            = $loan_data["device_code"];
+                  $device_type            = $loan_data["type_name"];
+                  $device_brand           = $loan_data["device_brand"];
+                  $device_model           = $loan_data["device_model"];
+                  $device_serial          = stripslashes($loan_data["device_serial"]);
+                  $device_color           = stripslashes($loan_data["device_color"]);
+                  $location_name          = $loan_data["location_name"];
+                  $device_description     = $loan_data["device_description"];
+                  $device_photo           = $loan_data["device_photo"];
+                  $device_photo_break     = explode(".", strrev($loan_data["device_photo"]), 2);
                   $device_photo_thumbnail = strrev($device_photo_break[1])."_thumbnail.".strrev($device_photo_break[0]);
-                  $device_status          = $rental_data["device_status"];
+                  $device_status          = $loan_data["device_status"];
 
                   // If location details enable
                   $dev_details = "";
                   if ($setting_location_details=="enable") {
-                    $place_name    = $rental_data["place_name"];
-                    $building_name = $rental_data["building_name"];
-                    $floor_name    = $rental_data["floor_name"];
+                    $place_name    = $loan_data["place_name"];
+                    $building_name = $loan_data["building_name"];
+                    $floor_name    = $loan_data["floor_name"];
 
                     $dev_details = "<input type='hidden' id='place_name_$device_id' value='$place_name'>
                     <input type='hidden' id='building_name_$device_id' value='$building_name'>
@@ -116,18 +132,21 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                   }
                 
                   $data_table   .= "<tr>
-                    <td>$rental_date</td>
-                    <td>$renter_name</td>
-                    <td>$device_code</td>
+                    <td>$loan_date</td>
+                    <td>$loan_name</td>
+                    <td><center>$dept</center></td>
                     <td>$device_type</td>
-                    <td>$device_brand</td>
-                    <td>$location_name</td>
+                    <td>$necessary</td>
+                    <td>$return_date</td>
                     <td>
-                      <button type='button' class='btn btn-primary' title='Show Detail' onclick=\"show_rental_detail('$device_id')\"><i class='glyphicon glyphicon-eye-open'></i></button>
+                      <button type='button' class='btn btn-primary' title='Show Detail' onclick=\"show_loan_detail('$device_id')\"><i class='glyphicon glyphicon-eye-open'></i></button>
                       <button type='button' class='btn btn-primary' title='Return Device' onclick=\"return_device('$device_id')\"><i class='glyphicon glyphicon-ok'></i></button>
                     </td>
-                    <input type=\"hidden\" id=\"rental_date_$device_id\" value=\"$rental_date\">
-                    <input type=\"hidden\" id=\"renter_name_$device_id\" value=\"$renter_name\">
+                    <input type=\"hidden\" id=\"loan_date_$device_id\" value=\"$loan_date\">
+                    <input type=\"hidden\" id=\"loan_name_$device_id\" value=\"$loan_name\">
+					<input type=\"hidden\" id=\"dept_$device_id\" value=\"$dept\">
+					<input type=\"hidden\" id=\"necessary_$device_id\" value=\"$necessary\">
+					<input type=\"hidden\" id=\"return_date_$device_id\" value=\"$return_date\">
                     <input type=\"hidden\" id=\"device_code_$device_id\" value=\"$device_code\">
                     <input type=\"hidden\" id=\"device_type_$device_id\" value=\"$device_type\">
                     <input type=\"hidden\" id=\"device_brand_$device_id\" value=\"$device_brand\">
@@ -165,8 +184,8 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 
     include("./include/init_fancybox.php");
 
-    echo "<script type='text/javascript' src='./js/rental_management.js'></script>";
-    include("./include/include_modal_rental_detail.php");
+    echo "<script type='text/javascript' src='./js/loan_management.js'></script>";
+    include("./include/include_modal_loan_detail.php");
 
 	}
 }

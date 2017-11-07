@@ -59,6 +59,7 @@ include("./include/include_header.php");
 				</li>
 			</ul>
 			<div class="tab-content">
+            
 				<div role="tabpanel" class="tab-pane fade active in" id="dev_list" aria-labelledby="dev_list_tab">
 					<?php 
 					// Get device list by type
@@ -69,14 +70,14 @@ include("./include/include_header.php");
 							$content = "<table class='table table-striped table-bordered datatables'>
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Code</th>
-									<th>Brand</th>
-									<th>Model</th>
+									<th><center>No</center></th>
+									<th><center>Code</center></th>
+									<th><center>Brand</center></th>
+									<th><center>Model</center></th>
 									<!--<th>SN</th>-->
-									<th>Status</th>
-									<th>Location</th>
-									<th>Actions</th>
+									<th><center>Status</center></th>
+									<th><center>Location Device</center></th>
+									<th><center>Actions</center></th>
 								</tr>
 							</thead>
 							<tbody>";
@@ -177,11 +178,11 @@ include("./include/include_header.php");
 							$content = "<table class='table table-striped table-bordered datatables'>
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Type Name</th>
-									<th>Code</th>
-									<th>Device Total</th>
-									<th>Actions</th>
+									<th><center>No</center></th>
+									<th><center>Type Name</center></th>
+									<th><center>Code</center></th>
+									<th><center>Device Total</center></th>
+									<th><center>Actions</center></th>
 								</tr>
 							</thead>
 							<tbody>";
@@ -194,11 +195,11 @@ include("./include/include_header.php");
 								$active       = $type_data["active"];
 
 								$content .= "<tr>
-									<td>$no</td>
+									<td><center>$no</center></td>
 									<td>$type_name</td>
-									<td>$type_code</td>
-									<td>$device_total Devices</td>
-									<td><a href='?type_id=$type_id' class='btn btn-primary btn-sm'>Show Device</a></td>
+									<td><center>$type_code</center></td>
+									<td><center>$device_total Devices</center></td>
+									<td><center><a href='?type_id=$type_id' class='btn btn-primary btn-sm'>Show Device</a></center></td>
 								</tr>";
 							}
 							$content .= "</tbody></table>";
@@ -220,11 +221,11 @@ include("./include/include_header.php");
 							$content = "<table class='table table-striped table-bordered datatables'>
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>Type Name</th>
-									<th>Type Code</th>
-									<th>Active</th>
-									<th>Actions</th>
+									<th><center>No</center></th>
+									<th><center>Type Name</center></th>
+									<th><center>Type Code</center></th>
+									<th><center>Active</center></th>
+									<th><center>Actions</center></th>
 								</tr>
 							</thead>
 							<tbody>";
@@ -245,11 +246,11 @@ include("./include/include_header.php");
 								}
 								$button_delete = "<button type='button' title='Delete' class='btn btn-danger btn-sm' onclick=\"device_type_delete('$type_id', '$type_name')\"><i class='glyphicon glyphicon-trash'></i></button>";
 								$content .= "<tr>
-									<td>$no</td>
-									<td>$type_name</td>
-									<td>$type_code</td>
-									<td>$active_status</td>
-									<td>$button_status $button_delete</td>
+									<td><center>$no</center></td>
+									<td><center>$type_name</center></td>
+									<td><center>$type_code</center></td>
+									<td><center>$active_status</center></td>
+									<td><center>$button_status $button_delete</center></td>
 								</tr>";
 							}
 							$content .= "</tbody></table>";

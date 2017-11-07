@@ -18,8 +18,8 @@ require_once(__DIR__ . '/class/device.class.php');
 $devClass  = new DeviceClass();
 require_once(__DIR__ . '/class/location.class.php');
 $locClass  = new LocationClass();
-require_once(__DIR__ . '/class/rental.class.php');
-$rentClass  = new RentalClass();
+require_once(__DIR__ . '/class/loan.class.php');
+$rentClass  = new LoanClass();
 
 
 
@@ -442,7 +442,7 @@ if (isset($_POST["action"])) {
 	*/
 
 	/**
-	*	Rental Block
+	*	loan Block
 	*
 	*	=============== START ===============
 	*/
@@ -451,10 +451,10 @@ if (isset($_POST["action"])) {
 	elseif ($action=="rent") {
 		$rent_device = $rentClass->rent_device($_POST);
 		if ($rent_device>0) {
-			$_SESSION['rental_status'] = "Successfully rent!";
+			$_SESSION['loan_status'] = "Successfully rent!";
 		}
 		else {
-			$_SESSION['rental_status'] = "Error, failed to rent device!";
+			$_SESSION['loan_status'] = "Error, failed to rent device!";
 		}
 		header("Location: ./dashboard.php");
 		die();

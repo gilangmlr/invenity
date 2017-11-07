@@ -7,7 +7,7 @@ $device_datas_new       = $devClass->show_device("", "new");
 $device_datas_in_use    = $devClass->show_device("", "in use");
 $device_datas_damaged   = $devClass->show_device("", "damaged");
 $device_datas_repaired  = $devClass->show_device("", "repaired");
-$device_datas_keep = $devClass->show_device("", "keep");
+$device_datas_keep = $devClass->show_device("", "keep in it");
 
 // Loop device data all
 $all_total = 0;

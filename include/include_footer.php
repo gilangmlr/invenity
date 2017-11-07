@@ -10,6 +10,8 @@
 <script type="text/javascript" src="./assets/plugins/pace/pace.js"></script>
 <script type="text/javascript" src="./js/inventory_js.js"></script>
 
+<!--<center><h5>PT. Gudang Garam Tbk</h5></center>-->
+
 <?php
 
 // Call modal form
