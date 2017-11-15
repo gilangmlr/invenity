@@ -151,6 +151,7 @@ CREATE TABLE `loan` (
   `updated_date` datetime NOT NULL,
   `dept` varchar(255) NOT NULL,
   `necessary` varchar(255) NOT NULL,
+  `returned` tinyint(1) NOT NULL DEFAULT 0,
   `return_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

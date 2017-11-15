@@ -81,7 +81,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
             <?php
               $rentclass = new LoanClass();
 
-              $data     = $rentclass->show_loans();
+              $data     = $rentclass->show_loans(false);
               $data_num = count($data);
 
               // Show if exists

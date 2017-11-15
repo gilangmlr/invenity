@@ -28,8 +28,12 @@ class LoanClass
   * @return   array   $result
   *
   */
-  public function show_loans()
+  public function show_loans($all = true, $returned = false)
   {
+    $wh = '';
+    if (!$all) {
+      $wh = $returned? ' AND returned = 1 ' : ' AND returned = 0 ';
+    }
     $query = "SELECT DATE_FORMAT(r.`loan_date`, '%Y-%m-%d') as `loan_date_formatted`, r.*, a.*, 
           b.`type_name`, 
           c.`location_name`,
@@ -44,7 +48,7 @@ class LoanClass
           LEFT JOIN location_place lp ON d.`place_id` = lp.`place_id` 
           LEFT JOIN location_building lb ON d.`building_id` = lb.`building_id`  
           LEFT JOIN location_floor lf ON d.`floor_id` = lf.`floor_id`
-          WHERE true";
+          WHERE true" . $wh;
     if ($_SESSION['privileges'] !== '*') {
       $username = $_SESSION['username'];
       $query .= " AND r.`username` = '$username'";
@@ -108,7 +112,7 @@ class LoanClass
     $device_id   = intval($dt_loan["device_id"]);
 
     // create query
-    $query   = "DELETE FROM loan WHERE device_id = $device_id";
+    $query   = "UPDATE loan SET returned = 1 WHERE device_id = $device_id";
 
     // add to database
     $process = $this->db->query($query);
@@ -119,7 +123,7 @@ class LoanClass
     }
 
     // create query
-    $queryUpd   = "UPDATE device_list SET device_status = 'keep' WHERE device_id = $device_id";
+    $queryUpd   = "UPDATE device_list SET device_status = 'Keep In IT' WHERE device_id = $device_id";
 
     // update database
     $processUpd = $this->db->query($queryUpd);
