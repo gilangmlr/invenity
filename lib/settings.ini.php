@@ -2,5 +2,5 @@
 [SQL]
 host = localhost
 user = root
-password = server
-dbname = logbook
+password = 12345
+dbname = invenity
