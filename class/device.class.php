@@ -336,7 +336,7 @@ class DeviceClass
 					LEFT JOIN location_place lp ON d.`place_id` = lp.`place_id` 
 					LEFT JOIN location_building lb ON d.`building_id` = lb.`building_id`  
 					LEFT JOIN location_floor lf ON d.`floor_id` = lf.`floor_id`
-					WHERE a.device_status != 'In User' AND a.device_status != 'damaged'";
+					WHERE a.device_status != 'In Use' AND a.device_status != 'damaged'";
 
 		$process = $this->db->query($query);
 		return $process;

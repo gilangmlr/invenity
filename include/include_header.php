@@ -35,16 +35,27 @@
 				} ?>
 			</title>
 			<!-- Styling -->
+ 
 		<link rel="icon" href="./assets/images/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-new.min.css"> 
         <link rel="stylesheet" href="./datepicker/css/bootstrap-datepicker3.css">
 		<link rel="stylesheet" type="text/css" href="./assets/css/jquery-ui-1.12.1.min.css">
+                    <style>
+body {
+	background:url(./img/header.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+</style>
 <!--		<link rel="stylesheet" type="text/css" href="./assets/plugins/pace/pace.css">-->
 	</head>
 <!--	<body background="./assets/images/backgrounds/<?php if ($invClass->setting_data("body_background")!="") { echo $invClass->setting_data("body_background"); } else {echo "symphony.png";} ?>"> -->
-		<div class="docs-header">
+<div class="docs-header">
 			<!--nav-->
-			<nav class="navbar navbar-default navbar-custom" role="navigation">
+<!--			<nav class="navbar navbar-inverse navbar-custom" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,38 +63,44 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
-						</button>
-						<p><a class="navbar-brand" href="#">
-						  <img src="assets/images/<?php if ($invClass->setting_data("inventory_logo")!="") { echo $invClass->setting_data("inventory_logo"); } else {echo "logo.png";} ?>" width="250" height="60">
-					    </a>
-					  </p>
-					  <p>&nbsp;</p>
-					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-right">
-							<!-- <li><a class="nav-link current" href="#">Home</a></li>
-							<li><a class="nav-link" href="#">About</a></li> -->
-						</ul>
-					</div>
-				</div>
+						</button> -->
+                        <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="dashboard.php" ><img src="assets/images/sclogo.png" width="285" height="76" class="img-responsive img-icons">
+        
+        </a>
+        </button>
+      </div>
+    </nav>
+</div>
 			</nav>
 			</div>
-
-			<div class="container document">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<h3 class="text-left">
-							<?php 
+			<p>&nbsp;</p>
+            
+            <header class="masthead text-left text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h3 class="text-uppercase">
+            
+            <!-- Font Color -->
+            <style type="text/css">
+   h3 {
+   color: white;
+   }
+   
+</style>
+              <strong><?php 
 							if ($invClass->setting_data("inventory_name")!="") { 
 								echo $invClass->setting_data("inventory_name"); 
 							} else {
 								echo "Inventory System";
-							} ?>
-						</h3>
-					</div>
-				</div>
-			</div>
+							} ?></strong>
+            </h3>
 
+    
+</header>
 			<div class="container document">
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -91,7 +108,7 @@
 							<li class="list-group-item">
 								<div class="text-center">
 									<a href='my_profile.php' class='list-group-item text-center' title='My Profile'>
-										<img src="<?php echo $_SESSION['user_photo'] ?>" class="img-thumbnail" height="120px" /><br>
+										<img src="<?php echo $_SESSION['user_photo'] ?>" class="img-thumbnail" height="90px" /><br>
 										<?php echo $_SESSION['first_name']. " " .$_SESSION['last_name'] ?>
 									</a>
 								</div>
@@ -104,3 +121,4 @@
 							<a href="#" class="list-group-item" id="sign_out" title="Sign Out"><i class="glyphicon glyphicon-log-out"></i> &nbsp; Sign Out</a>
 						</div>
 					</div>
+                    

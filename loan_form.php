@@ -58,7 +58,7 @@ include("./include/include_header.php");
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <i class="glyphicon glyphicon-user"></i> &nbsp; My Profile
+        <i class="glyphicon glyphicon-user"></i> &nbsp; Profile
       </h3>
       <br>
     </div>
@@ -75,8 +75,8 @@ include("./include/include_header.php");
     </div>
         
     <div class="col-md-6 mb-3">
-      <label>Device Type</label>
-      <select name="device_type" class="form-control" id="device_type" required>
+      <label>* Device Type</label>
+      <select name="device_type" class="form-control" id="device_type" tabindex="5" required>
       <option selected>Select One</option>
                         <?php
                             // Get all device types
@@ -97,12 +97,12 @@ include("./include/include_header.php");
 <div class="row">                        
     <div class="col-md-6 mb-3">
       <label>* Loan Name</label>
-      <input type="text" class="form-control" name="loan_name" id="loan_name" placeholder="Full Name" required>
+      <input type="text" class="form-control" name="loan_name" id="loan_name" placeholder="Full Name" tabindex=1 required>
     </div>
 
 <div class="col-md-6 mb-3">
       <label>Device Code</label>
-      <select name="device_code" class="form-control" id="device_code" data-validetta="required" ></select>
+      <select name="device_code" class="form-control" id="device_code" data-validetta="required" tabindex="6" ></select>
     </div>
     </div>
     <br />                   
@@ -110,7 +110,7 @@ include("./include/include_header.php");
 <div class="row">
     <div class="col-md-6 mb-3">
       <label>* Department</label>
-      <input type="text" class="form-control" name="dept" id="dept" placeholder="Department" required>
+      <input type="text" class="form-control" name="dept" id="dept" placeholder="Department" tabindex=2 required>
 
     </div>
     <div class="col-md-6 mb-3">
@@ -124,7 +124,7 @@ include("./include/include_header.php");
   <div class="row">
     <div class="col-md-6 mb-3">
       <label>* Necessary</label>
-      <input type="text" class="form-control" name="necessary" id="necessary" placeholder="Necessary" required>
+      <input type="text" class="form-control" name="necessary" id="necessary" placeholder="Necessary" tabindex=3 required>
 
     </div>
     <div class="col-md-6 mb-3">
@@ -136,8 +136,8 @@ include("./include/include_header.php");
 
   <div class="row">
     <div class="col-md-6 mb-3">
-      <label>* Return Date</label>
-      <input type="text" class="form-control" name="return_date" id="return_date" placeholder="Return Date" required>
+      <label>Return Date</label>
+      <input type="text" class="form-control" name="return_date" id="return_date" placeholder="Return Date" tabindex="4">
     </div>
     
     <div class="col-md-6 mb-3">

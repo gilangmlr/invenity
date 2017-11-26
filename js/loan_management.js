@@ -17,6 +17,9 @@ jQuery(document).ready(function($) {
   function show_loan_detail (device_id) {
     $("#dl_loan_date").html($("#loan_date_"+device_id).val());
     $("#dl_loan_name").html($("#loan_name_"+device_id).val());
+    $("#dl_loan_dept").html($("#dept_"+device_id).val());
+    $("#dl_loan_necessary").html($("#necessary_"+device_id).val());
+    $("#dl_return_date").html($("#return_date_"+device_id).val());
     $("#dl_dev_code").html($("#device_code_"+device_id).val());
     $("#dl_dev_type").html($("#device_type_"+device_id).val());
     $("#dl_dev_brand").html($("#device_brand_"+device_id).val());

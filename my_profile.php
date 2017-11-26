@@ -72,14 +72,14 @@ include("./include/include_header.php");
                         <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="<?php echo $last_name; ?>"> 
                     </div>
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label class="control-label col-sm-3" for="password">Password</label>
                     <div class="col-sm-9">
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password"> 
                         <label class="text-muted"><input id="show_password" type="checkbox"> Show password</label>
                         <span class="help-block">Fill this field <strong>only</strong> when you want to change the password.</span>
                     </div>
-                </div>
+                </div> -->
                 <hr class="dashed">
                 <div class="form-group">
                     <label class="control-label col-sm-3" for="photo">User Photo</label>

@@ -41,13 +41,13 @@
                             <?php if (isset($username_info)) { echo $username_info; } ?>
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="control-label col-sm-3" for="password">Password</label>
                         <div class="col-sm-9">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Password" data-validetta="required" <?php if (isset($_SESSION["new_password"])) { echo " value='".$_SESSION["new_password"]."'"; } ?>> 
                             <label class="text-muted"><input id="show_password" type="checkbox"> Show password</label>
                         </div>
-                    </div>
+                    </div> -->
                     <hr class="dashed">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="active">Active</label>

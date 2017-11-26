@@ -49,13 +49,13 @@ class LoanClass
           LEFT JOIN location_building lb ON d.`building_id` = lb.`building_id`  
           LEFT JOIN location_floor lf ON d.`floor_id` = lf.`floor_id`
           WHERE true" . $wh;
-    if ($_SESSION['privileges'] !== '*') {
+/*    if ($_SESSION['privileges'] !== '*') {
       $username = $_SESSION['username'];
       $query .= " AND r.`username` = '$username'";
-    }
+    } */
     $result = $this->db->query($query);
-    return $result;
-  }
+    return $result; 
+  } 
 
   /**
   * Rent a device
@@ -86,7 +86,7 @@ class LoanClass
     }
 
     // create query
-    $queryUpd   = "UPDATE device_list SET device_status = 'In User' WHERE device_id = $device_id";
+    $queryUpd   = "UPDATE device_list SET device_status = 'In Use' WHERE device_id = $device_id";
 
     // update database
     $processUpd = $this->db->query($queryUpd);

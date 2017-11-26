@@ -1,2 +1,2 @@
-lib/logs
-lib/settings.ini.php
+node_modules
+bower_components

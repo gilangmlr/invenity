@@ -32,7 +32,7 @@ class UserClass
 	*/
 	public function sign_in_ldap($username, $password)
 	{
-		$adServer = "GGKDRDC01.gudanggaramtbk.com";
+		$adServer = "ggkdrdc01.gudanggaramtbk.com";
 
 		$ldap = ldap_connect($adServer);
 
@@ -51,7 +51,10 @@ class UserClass
 		    
 		    $dt_user = array();
 		    $dt_user['first_name'] = $info[0]["givenname"][0];
-		    $dt_user['last_name'] = $info[0]["sn"][0];
+			$dt_user['last_name'] = '';
+			if (isset($info[0]["sn"])) {
+				$dt_user['last_name'] = $info[0]["sn"][0];
+			}
 		    // $dt_user['username'] = $info[0]["samaccountname"][0];
 		    $dt_user['username'] = $username;
 		    $dt_user['password'] = $password;
@@ -71,7 +74,6 @@ class UserClass
 		}
 	}
 
-
 	/**
 	* Sign In
 	*
@@ -83,6 +85,7 @@ class UserClass
 		// Get salt
 		$query = "SELECT salt FROM users WHERE username = '$username'";
 		$fetch = $this->db->query($query,'',PDO::FETCH_ASSOC);
+		$salt = '';
 		foreach ($fetch as $dt_salt) {
 			$salt = $dt_salt['salt'];
 		}

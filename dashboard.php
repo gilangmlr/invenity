@@ -61,19 +61,19 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
         ?>
     		<div class="panel panel-primary">
     			<div class="panel-heading">
-    				<h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Status Monitor</h3>
+    				<h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; <strong>Status Monitor</strong></h3>
     				<br>
     			</div>
     			<div class="panel-body">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<canvas id="canvas" class="img-thumbnail"></canvas>
+						<canvas id="myChart" class="img-thumbnail"></canvas>
 					</div>
     			</div>
     		</div>
             <!-- Table Loan Status -->
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Loan Status</h3>
+            <h3 class="panel-title"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; <strong>Loan Status</strong></h3>
             <br>
           </div>
           <div class="panel-body">
@@ -94,7 +94,6 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
 						<th><center>Department</center></th>
 						<th><center>Device Type</center></th>
 						<th><center>Necessary</center></th>
-						<th><center>Return Loan</center></th>
 						<th><center>Details</center></th>
 					</tr>
 						</thead>
@@ -137,11 +136,10 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                     <td><center>$dept</center></td>
                     <td>$device_type</td>
                     <td>$necessary</td>
-                    <td>$return_date</td>
-                    <td>
+                    <td><center>
                       <button type='button' class='btn btn-primary' title='Show Detail' onclick=\"show_loan_detail('$device_id')\"><i class='glyphicon glyphicon-eye-open'></i></button>
                       <button type='button' class='btn btn-primary' title='Return Device' onclick=\"return_device('$device_id')\"><i class='glyphicon glyphicon-ok'></i></button>
-                    </td>
+                    </center></td>
                     <input type=\"hidden\" id=\"loan_date_$device_id\" value=\"$loan_date\">
                     <input type=\"hidden\" id=\"loan_name_$device_id\" value=\"$loan_name\">
 					<input type=\"hidden\" id=\"dept_$device_id\" value=\"$dept\">

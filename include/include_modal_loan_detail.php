@@ -5,16 +5,31 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="modal_title_loan_detail">Loan Detail</h4>
+                <h4 class="modal-title" id="modal_title_loan_detail"><strong>Loan Detail</strong></h4>
             </div>
             <div class="modal-body form-horizontal" id="modal_content_loan_detail">
+                
                 <div class="form-group">
                     <label class="control-label col-sm-3">Date:</label>
                     <div class="col-sm-8 form-control-static" id="dl_loan_date"> </div>
                 </div>
+               
                 <div class="form-group">
                     <label class="control-label col-sm-3">Name:</label>
                     <div class="col-sm-8 form-control-static" id="dl_loan_name"> </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Department:</label>
+                    <div class="col-sm-8 form-control-static" id="dl_loan_dept"> </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Necessary:</label>
+                    <div class="col-sm-8 form-control-static" id="dl_loan_necessary"> </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Return Data:</label>
+                    <div class="col-sm-8 form-control-static" id="dl_return_date"> </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Device Code:</label>
@@ -58,7 +73,7 @@
                     <label class="control-label col-sm-3">Status:</label>
                     <div class="col-sm-8 form-control-static" id="dl_dev_status"> </div>
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label class="control-label col-sm-3">Location:</label>
                     <div class="col-sm-8 form-control-static" id="dl_dev_location"> </div>
                 </div>
@@ -74,7 +89,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-3">Floor:</label>
                     <div class="col-sm-8 form-control-static" id="dl_dev_floor"> </div>
-                </div>
+                </div> -->
                 <?php endif ?>
             </div>
             <div class="modal-footer" id="modal_footer_device_detail">
