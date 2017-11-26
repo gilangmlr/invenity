@@ -69,13 +69,15 @@ class LoanClass
     // assign variable
     $device_id   = intval($dt_loan["device_id"]);
     $loan_name = $dt_loan["loan_name"];
-    $loan_date = $dt_loan["loan_date"];
+    $loan_date = explode("-", $dt_loan["loan_date"]);
+    $loan_date_time = mktime(date('H'), date('i'), date('s'), $loan_date[1], $loan_date[2], $loan_date[0]);
+    $loan_date_sql = date("Y-m-d H:i:s", $loan_date_time);
 	$dept = $dt_loan["dept"];
 	$necessary = $dt_loan["necessary"];
 	$return_date = $dt_loan["return_date"];
 
     // create query
-    $query   = "INSERT INTO loan (username, loan_date, device_id, loan_name, created_date, updated_date, dept, necessary, return_date) VALUES ('$_SESSION[username]', '$loan_date', $device_id, '$loan_name', NOW(), NOW(), '$dept', '$necessary', NOW())";
+    $query   = "INSERT INTO loan (username, loan_date, device_id, loan_name, created_date, updated_date, dept, necessary, return_date) VALUES ('$_SESSION[username]', '$loan_date_sql', $device_id, '$loan_name', NOW(), NOW(), '$dept', '$necessary', NOW())";
 
     // add to database
     $process = $this->db->query($query);

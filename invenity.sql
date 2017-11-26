@@ -152,7 +152,7 @@ CREATE TABLE `loan` (
   `dept` varchar(255) NOT NULL,
   `necessary` varchar(255) NOT NULL,
   `returned` tinyint(1) NOT NULL DEFAULT 0,
-  `return_date` datetime NOT NULL
+  `return_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -433,8 +433,7 @@ ALTER TABLE `device_type`
 -- Indexes for table `loan`
 --
 ALTER TABLE `loan`
-  ADD PRIMARY KEY (`device_id`),
-  ADD KEY `username` (`username`);
+  ADD PRIMARY KEY (`username`, `loan_name`, `device_id`, `loan_date`);
 
 --
 -- Indexes for table `location`
