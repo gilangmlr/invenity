@@ -34,7 +34,7 @@ class LoanClass
     if (!$all) {
       $wh = $returned? ' AND returned = 1 ' : ' AND returned = 0 ';
     }
-    $query = "SELECT DATE_FORMAT(r.`loan_date`, '%Y-%m-%d') as `loan_date_formatted`, r.*, a.*, 
+    $query = "SELECT DATE_FORMAT(r.`loan_date`, '%Y-%m-%d') as `loan_date_formatted`, DATE_FORMAT(r.`planned_return_date`, '%Y-%m-%d') as `planned_return_date_formatted`, DATE_FORMAT(r.`real_return_date`, '%Y-%m-%d') as `real_return_date_formatted`, r.*, a.*, 
           b.`type_name`, 
           c.`location_name`,
           lp.`place_name`, 
@@ -74,10 +74,12 @@ class LoanClass
     $loan_date_sql = date("Y-m-d H:i:s", $loan_date_time);
 	$dept = $dt_loan["dept"];
 	$necessary = $dt_loan["necessary"];
-	$return_date = $dt_loan["return_date"];
+	$planned_return_date = explode("-", $dt_loan["return_date"]);
+  $planned_return_date_time = mktime(date('H'), date('i'), date('s'), $planned_return_date[1], $planned_return_date[2], $planned_return_date[0]);
+    $planned_return_date_sql = date("Y-m-d H:i:s", $planned_return_date_time);
 
     // create query
-    $query   = "INSERT INTO loan (username, loan_date, device_id, loan_name, created_date, updated_date, dept, necessary, return_date) VALUES ('$_SESSION[username]', '$loan_date_sql', $device_id, '$loan_name', NOW(), NOW(), '$dept', '$necessary', NOW())";
+    $query   = "INSERT INTO loan (username, loan_date, device_id, loan_name, created_date, updated_date, dept, necessary, planned_return_date) VALUES ('$_SESSION[username]', '$loan_date_sql', $device_id, '$loan_name', NOW(), NOW(), '$dept', '$necessary', '$planned_return_date_sql')";
 
     // add to database
     $process = $this->db->query($query);
@@ -115,6 +117,19 @@ class LoanClass
 
     // create query
     $query   = "UPDATE loan SET returned = 1 WHERE device_id = $device_id";
+
+    // add to database
+    $process = $this->db->query($query);
+
+    // create system log
+    if ($process>0) {
+      $this->sysClass->save_system_log($_SESSION['username'], $query);
+    }
+
+    $real_return_date_sql = date("Y-m-d H:i:s", time());
+
+    // create query
+    $query   = "UPDATE loan SET real_return_date = '$real_return_date_sql' WHERE device_id = $device_id";
 
     // add to database
     $process = $this->db->query($query);

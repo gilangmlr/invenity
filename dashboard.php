@@ -104,7 +104,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                   $loan_name            = $loan_data["loan_name"];
 				  $dept					= $loan_data["dept"];
 				  $necessary			= $loan_data["necessary"];
-				  $return_date			= $loan_data["return_date"];
+				  $return_date			= $loan_data["planned_return_date_formatted"];
                   $device_code            = $loan_data["device_code"];
                   $device_type            = $loan_data["type_name"];
                   $device_brand           = $loan_data["device_brand"];

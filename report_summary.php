@@ -66,15 +66,16 @@ class PDF extends FPDF
         $this->Cell(12, 10, "No", 1, 0);
         if ($by === 'loan') {
             $this->Cell(20, 10, "Date", 1, 0);
-            $this->Cell(28, 10, "Name", 1, 0);
+            $this->Cell(16, 10, "Name", 1, 0);
         }
         $this->Cell(28, 10, "Code", 1, 0);
         $this->Cell(25, 10, "Type", 1, 0);
         $this->Cell(25, 10, "Brand", 1, 0);
         $this->Cell(25, 10, "Model", 1, 0);
         $this->Cell(35, 10, "Serial Number", 1, 0);
-        $this->Cell(60, 10, "Location", 1, 0);
-        $this->Cell(15, 10, "Status", 1, 1);
+        $this->Cell(48, 10, "Location", 1, 0);
+        $this->Cell(15, 10, "Status", 1, 0);
+        $this->Cell(20, 10, "Return Date", 1, 1);
 
     }
 
@@ -136,15 +137,16 @@ foreach ($datas as $data) {
     $pdf->Cell(12, 10, $no, 1, 0);
     if ($by === 'loan') {
         $pdf->Cell(20, 10, $data['loan_date_formatted'], 1, 0);
-        $pdf->Cell(28, 10, trippleDot($data['loan_name'], 28), 1, 0);
+        $pdf->Cell(16, 10, trippleDot($data['loan_name'], 16), 1, 0);
     }
     $pdf->Cell(28, 10, $data['device_code'], 1, 0);
     $pdf->Cell(25, 10, trippleDot($data['type_name'], 25), 1, 0);
     $pdf->Cell(25, 10, trippleDot($data['device_brand'], 25), 1, 0);
     $pdf->Cell(25, 10, trippleDot($data['device_model'], 25), 1, 0);
     $pdf->Cell(35, 10, trippleDot($data['device_serial'], 35), 1, 0);
-    $pdf->Cell(60, 10, trippleDot($locationdetail, 60), 1, 0);
-    $pdf->Cell(15, 10, ucfirst($data['device_status']), 1, 1);
+    $pdf->Cell(48, 10, trippleDot($locationdetail, 48), 1, 0);
+    $pdf->Cell(15, 10, ucfirst($data['device_status']), 1, 0);
+    $pdf->Cell(20, 10, $data['real_return_date_formatted'], 1, 1);
     // die();
 }
 
