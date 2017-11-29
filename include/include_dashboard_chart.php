@@ -4,7 +4,7 @@
 // Get all device data
 $device_datas_all       = $devClass->show_device();
 //$device_datas_new       = $devClass->show_device("", "New");
-$device_datas_in_use    = $devClass->show_device("", "In Use");
+$device_datas_in_use    = $devClass->show_device("", "In User");
 $device_datas_damaged   = $devClass->show_device("", "Damaged");
 $device_datas_repaired  = $devClass->show_device("", "Repaired");
 $device_datas_keep = $devClass->show_device("", "Keep In IT");
@@ -59,7 +59,7 @@ var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-       labels : [ "All Devices", "In Use", "Damaged", "Repaired", "Keep In IT" ],
+       labels : [ "All Devices", "In User", "Damaged", "Repaired", "Keep In IT" ],
         datasets: [{			  
             label: 'TOTAL ALL DEVICE',
 			data : [<?php echo $all_total.",".$in_use_total.",".$damaged_total.",".$repaired_total.",".$keep_total; ?>],
