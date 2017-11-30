@@ -77,7 +77,7 @@ include("./include/include_header.php");
     <div class="col-md-6 mb-3">
       <label>* Device Type</label>
       <select name="device_type" class="form-control" id="device_type" tabindex="5" required>
-      <option selected>Select One</option>
+      <option value="none" selected>Select One</option>
                         <?php
                             // Get all device types
                             $dev_types     = $deviceclass->show_all_device_types();

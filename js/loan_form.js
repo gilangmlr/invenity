@@ -32,6 +32,12 @@ jQuery(document).ready(function($) {
     $("#device_code").html('');
     $("button[type=submit]").prop('disabled', false);
     if (devs.length === 0) {
+      if ($(this).val() != 'none') {
+        $("#modal_dialog #modal_title").html("Warning!");
+        $("#modal_dialog #modal_content").html("No available device!");
+        $("#modal_dialog #modal_footer").html("");
+        $("#modal_dialog").modal("show");
+      }
       $("#device_code").html('<option disabled>No available device</option>');
       $("button[type=submit]").prop('disabled', true);
     }
