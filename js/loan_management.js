@@ -33,6 +33,7 @@ jQuery(document).ready(function($) {
     
     $("#dl_dev_description").html($("#device_description_"+device_id).val());
     $("#dl_dev_status").html($("#device_status_"+device_id).val());
+    $("#dl_loan_submitter").html($("#loan_submitter_"+device_id).val());
     $("#dl_dev_location").html($("#location_name_"+device_id).val());
     $("#dl_dev_place").html($("#place_name_"+device_id).val());
     $("#dl_dev_building").html($("#building_name_"+device_id).val());

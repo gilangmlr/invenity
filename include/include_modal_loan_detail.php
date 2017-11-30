@@ -73,6 +73,10 @@
                     <label class="control-label col-sm-3">Status:</label>
                     <div class="col-sm-8 form-control-static" id="dl_dev_status"> </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Submitter:</label>
+                    <div class="col-sm-8 form-control-static" id="dl_loan_submitter"> </div>
+                </div>
 <!--                <div class="form-group">
                     <label class="control-label col-sm-3">Location:</label>
                     <div class="col-sm-8 form-control-static" id="dl_dev_location"> </div>

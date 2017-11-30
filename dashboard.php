@@ -102,6 +102,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                   $device_id              = $loan_data["device_id"];
                   $loan_date            = $loan_data["loan_date_formatted"];
                   $loan_name            = $loan_data["loan_name"];
+                  $loan_submitter            = $loan_data["username"];
 				  $dept					= $loan_data["dept"];
 				  $necessary			= $loan_data["necessary"];
 				  $return_date			= $loan_data["planned_return_date_formatted"];
@@ -142,6 +143,7 @@ else if (isset($_SESSION['username']) && isset($_SESSION['level']) && $_SESSION[
                     </center></td>
                     <input type=\"hidden\" id=\"loan_date_$device_id\" value=\"$loan_date\">
                     <input type=\"hidden\" id=\"loan_name_$device_id\" value=\"$loan_name\">
+                    <input type=\"hidden\" id=\"loan_submitter_$device_id\" value=\"$loan_submitter\">
 					<input type=\"hidden\" id=\"dept_$device_id\" value=\"$dept\">
 					<input type=\"hidden\" id=\"necessary_$device_id\" value=\"$necessary\">
 					<input type=\"hidden\" id=\"return_date_$device_id\" value=\"$return_date\">
